@@ -76,6 +76,44 @@
                     </archive>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>com.github.wvengen</groupId>
+                <artifactId>proguard-maven-plugin</artifactId>
+                <version>2.0.14</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals><goal>proguard</goal></goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <proguardVersion>6.1.0beta1</proguardVersion>
+                    <injar>${project.build.finalName}.jar</injar>
+                    <outjar>${project.build.finalName}-obfuscated.jar</outjar>
+                    <obfuscate>true</obfuscate>
+                    <libs>
+                        <lib>${java.home}/jmods/java.base.jmod</lib>
+                    </libs>
+                    <options>
+                        <option>-dontnote</option>
+                        <option>-dontwarn</option>
+                        <option>-keepattributes *Annotation*</option>
+                        <option>-keepattributes Signature</option>
+                        <option>-keepattributes InnerClasses</option>
+                        <option>-keepattributes InnerClasses, EnclosingMethod</option>
+                        <option>-keep public class ru.otus.l011.Main {
+                            public static void main(java.lang.String[]);}</option>
+                    </options>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>net.sf.proguard</groupId>
+                        <artifactId>proguard-base</artifactId>
+                        <version>6.1.0beta1</version>
+                        <scope>runtime</scope>
+                    </dependency>
+                </dependencies>
+            </plugin>
         </plugins>
     </build>
 
