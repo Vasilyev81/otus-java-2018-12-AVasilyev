@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.otus</groupId>
-    <artifactId>L01.1</artifactId>
+    <artifactId>L01.2</artifactId>
     <version>1.0</version>
 
-    <name>L01.01</name>
-    <description>homework for L01.1</description>
+    <name>L01.02</name>
+    <description>homework for L01.2</description>
 
     <developers>
         <developer>
