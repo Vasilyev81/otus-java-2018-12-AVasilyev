@@ -23,7 +23,7 @@ public class MemoryCounter<T extends Object> implements PropertyChangeListener {
 
 
     public static <T extends Object> void printObjectSize(T t){
-        System.out.println(GraphLayout.parseInstance(t).toFootprint());
         System.out.println(ClassLayout.parseClass(t.getClass()).toPrintable());
+        System.out.println(GraphLayout.parseInstance(t).toFootprint());
     }
 }
