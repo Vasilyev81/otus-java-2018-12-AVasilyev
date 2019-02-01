@@ -3,14 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="20b8e647-21db-408f-b2b2-462732320e61" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/otus/L031/MyArrayList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/otus/L031/MyArrayList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/otus/L031/MyArrayListTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/otus/L031/MyArrayListTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/otus/L031/MyArrayList$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/otus/L031/MyArrayList$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/otus/L031/MyArrayList$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/otus/L031/MyArrayList$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/otus/L031/MyArrayList.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/otus/L031/MyArrayList.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/otus/L031/MyArrayListTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/otus/L031/MyArrayListTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../L04.1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../L04.1/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../L04.1/src/main/java/ru/otus/L041/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../L04.1/src/main/java/ru/otus/L041/GCMain.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,8 +20,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/otus/L031/MyArrayListTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="103">
-              <caret line="90" column="32" selection-start-line="90" selection-start-column="32" selection-end-line="90" selection-end-column="32" />
+            <state relative-caret-position="-889">
+              <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/otus/L031/MyArrListUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="18" column="22" lean-forward="true" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -34,64 +39,62 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ru/otus/L031/MyArrayList.java">
+        <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.base/java/util/List.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="162" column="16" selection-start-line="162" selection-start-column="16" selection-end-line="162" selection-end-column="16" />
+            <state relative-caret-position="173">
+              <caret line="503" column="17" selection-start-line="503" selection-start-column="17" selection-end-line="503" selection-end-column="17" />
               <folding>
-                <element signature="method#MyArrayList#0;class#MyArrayList#0" />
-                <element signature="method#contains#0;class#MyArrayList#0" />
-                <element signature="e#683#816#1" />
-                <element signature="e#728#806#1" />
-                <element signature="method#iterator#0;class#MyArrayList#0" />
-                <element signature="class#917:1604" />
-                <element signature="method#hasNext#0;class#917:1604" />
-                <element signature="method#next#0;class#917:1604" />
-                <element signature="method#remove#0;class#917:1604" />
-                <element signature="method#listIterator#0;class#MyArrayList#0" />
-                <element signature="class#1722:3582" />
-                <element signature="method#hasNext#0;class#1722:3582" />
-                <element signature="method#next#0;class#1722:3582" />
-                <element signature="method#nextIndex#0;class#1722:3582" />
-                <element signature="method#previousIndex#0;class#1722:3582" />
-                <element signature="method#remove#0;class#1722:3582" />
-                <element signature="method#add#0;class#1722:3582" />
-                <element signature="method#add#0;class#MyArrayList#0" />
-                <element signature="method#add#1;class#MyArrayList#0" />
-                <element signature="e#4161#4479#1" />
-                <element signature="method#addAll#0;class#MyArrayList#0" />
-                <element signature="method#get#0;class#MyArrayList#0" />
-                <element signature="method#set#0;class#MyArrayList#0" />
-                <element signature="method#remove#0;class#MyArrayList#0" />
-                <element signature="e#5448#5588#1" />
-                <element signature="e#5495#5578#1" />
-                <element signature="method#checkIndexForOutOfBounds#0;class#MyArrayList#0" />
-                <element signature="method#random#0;class#MyArrayList#0" />
-                <element signature="e#6072#6322#1" />
-                <element signature="method#increase#0;class#MyArrayList#0" />
-                <element signature="method#toString#0;class#MyArrayList#0" />
-                <element signature="e#6621#6703#1" />
-                <element signature="docComment;method#containsAll#0;class#MyArrayList#0" />
-                <element signature="method#containsAll#0;class#MyArrayList#0" />
-                <element signature="method#forEach#0;class#MyArrayList#0" />
-                <element signature="method#toArray#1;class#MyArrayList#0" />
-                <element signature="method#addAll#1;class#MyArrayList#0" />
-                <element signature="method#removeAll#0;class#MyArrayList#0" />
-                <element signature="method#removeIf#0;class#MyArrayList#0" />
-                <element signature="method#retainAll#0;class#MyArrayList#0" />
-                <element signature="method#replaceAll#0;class#MyArrayList#0" />
-                <element signature="method#listIterator#1;class#MyArrayList#0" />
-                <element signature="method#subList#0;class#MyArrayList#0" />
+                <element signature="docComment;class#List#0" />
+                <element signature="e#6329#7107#0" />
+                <element signature="e#7145#7318#0" />
+                <element signature="e#7352#8011#0" />
+                <element signature="e#8041#10052#0" />
+                <element signature="e#10119#11254#0" />
+                <element signature="e#11282#12444#0" />
+                <element signature="e#12518#13393#0" />
+                <element signature="e#13441#14697#0" />
+                <element signature="e#14750#16422#0" />
+                <element signature="e#16486#17447#0" />
+                <element signature="e#17493#18575#0" />
+                <element signature="e#18621#19902#0" />
+                <element signature="e#18621#20151#0" />
+                <element signature="e#20087#20145#1" />
+                <element signature="e#23698#23964#0" />
+                <element signature="e#24020#24808#0" />
+                <element signature="e#24844#25520#0" />
+                <element signature="e#25584#25910#0" />
+                <element signature="e#28005#28634#0" />
+                <element signature="e#28692#29593#0" />
+                <element signature="e#29626#30526#0" />
+                <element signature="e#30587#30794#0" />
+                <element signature="e#30836#31679#0" />
+                <element signature="e#31743#33614#0" />
+                <element signature="e#33669#35205#0" />
+                <element signature="e#33669#35480#0" />
+                <element signature="e#35305#35385#1" />
+                <element signature="e#35391#35474#1" />
+                <element signature="e#35486#35754#0" />
+                <element signature="e#35845#36240#0" />
+                <element signature="e#36340#36771#0" />
+                <element signature="e#36881#37349#0" />
+                <element signature="e#37468#37971#0" />
+                <element signature="e#38100#38638#0" />
+                <element signature="e#38777#39349#0" />
+                <element signature="e#38777#39540#0" />
+                <element signature="e#39546#40157#0" />
+                <element signature="e#39546#40358#0" />
+                <element signature="e#40364#41011#0" />
+                <element signature="e#40364#41222#0" />
+                <element signature="e#41228#41909#0" />
+                <element signature="e#41228#42130#0" />
+                <element signature="e#42136#42852#0" />
+                <element signature="e#42136#43085#0" />
+                <element signature="e#43091#44128#0" />
+                <element signature="e#44133#44145#0" />
+                <element signature="e#43091#44667#0" />
+                <element signature="e#44255#44661#0" />
+                <element signature="e#44673#45522#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="85" selection-start-line="85" selection-end-line="85" />
             </state>
           </provider>
         </entry>
@@ -99,8 +102,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.base/java/util/Collections.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="558" selection-start-line="558" selection-end-line="558" />
+            <state relative-caret-position="97">
+              <caret line="5448" column="30" selection-start-line="5448" selection-start-column="30" selection-end-line="5448" selection-end-column="30" />
               <folding>
                 <element signature="docComment;class#Collections#0" />
                 <element signature="e#2614#2712#0" />
@@ -890,7 +893,6 @@
                 <element signature="e#209005#209172#1" />
                 <element signature="e#209045#209162#1" />
                 <element signature="e#209248#210710#0" />
-                <element signature="e#209248#210940#0" />
                 <element signature="e#210946#212536#0" />
                 <element signature="e#212652#212686#0" />
                 <element signature="e#212652#215087#0" />
@@ -946,26 +948,58 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/otus/L031/MyArrayList.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="157" selection-start-line="157" selection-end-line="157" />
+              <folding>
+                <element signature="method#MyArrayList#0;class#MyArrayList#0" />
+                <element signature="method#contains#0;class#MyArrayList#0" />
+                <element signature="method#iterator#0;class#MyArrayList#0" />
+                <element signature="method#listIterator#0;class#MyArrayList#0" />
+                <element signature="method#get#0;class#MyArrayList#0" />
+                <element signature="method#set#0;class#MyArrayList#0" />
+                <element signature="method#remove#0;class#MyArrayList#0" />
+                <element signature="method#checkIndexForOutOfBounds#0;class#MyArrayList#0" />
+                <element signature="method#toString#0;class#MyArrayList#0" />
+                <element signature="docComment;method#containsAll#0;class#MyArrayList#0" />
+                <element signature="method#containsAll#0;class#MyArrayList#0" />
+                <element signature="method#forEach#0;class#MyArrayList#0" />
+                <element signature="method#toArray#1;class#MyArrayList#0" />
+                <element signature="method#addAll#1;class#MyArrayList#0" />
+                <element signature="method#removeAll#0;class#MyArrayList#0" />
+                <element signature="method#removeIf#0;class#MyArrayList#0" />
+                <element signature="method#retainAll#0;class#MyArrayList#0" />
+                <element signature="method#replaceAll#0;class#MyArrayList#0" />
+                <element signature="method#listIterator#1;class#MyArrayList#0" />
+                <element signature="method#subList#0;class#MyArrayList#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
       <find>isEmpty</find>
-      <find>sort</find>
       <find>toString</find>
       <find>Iterator</find>
       <find>addAll</find>
       <find>copy</find>
       <find>checkIndexForOutOfBound</find>
       <find>add</find>
+      <find>rand</find>
+      <find>sort</find>
     </findStrings>
     <replaceStrings>
       <replace>checkIndexForOutOfBounds</replace>
@@ -978,8 +1012,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/test/java/ru/otus/L031/MyArrayListTestTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/otus/L031/MyArrayList.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/otus/L031/MyArrayList.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/otus/L031/MyArrListUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/otus/L031/MyArrayListTest.java" />
       </list>
     </option>
@@ -1000,7 +1035,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="330" />
     <option name="y" value="140" />
     <option name="width" value="975" />
@@ -1012,7 +1047,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -1022,19 +1057,45 @@
             </path>
             <path>
               <item name="L03.1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="L03.1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="L03.1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="L03.1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="L03.1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="L03.1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="L03.1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="L03.1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="L031" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="L03.1" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548944049969" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549013996582" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -1118,18 +1179,18 @@
       <workItem from="1548780570376" duration="2344000" />
       <workItem from="1548852304778" duration="263000" />
       <workItem from="1548870495057" duration="2667000" />
-      <workItem from="1548928355472" duration="12920000" />
+      <workItem from="1548928355472" duration="13547000" />
+      <workItem from="1548958900527" duration="9514000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79542000" />
+    <option name="totallyTimeSpent" value="89683000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13691275" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13892618" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -1139,7 +1200,7 @@
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32918397" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.560166" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.22268327" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.52558786" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1155,7 +1216,7 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" id="Theme Preview" order="4" />
-      <window_info anchor="right" id="Maven" order="5" visible="true" weight="0.3295302" />
+      <window_info anchor="right" id="Maven" order="5" weight="0.3295302" />
       <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Database" order="8" />
@@ -1197,13 +1258,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.base/java/util/Comparator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="108" column="17" selection-start-line="108" selection-start-column="17" selection-end-line="108" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.base/java/lang/Math.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1145">
@@ -2186,16 +2240,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/ru/otus/L031/MyArrayListTestTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/ru/otus/L031/MyArrayListTestTest.java" />
     <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.base/java/util/ListIterator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="612">
@@ -2424,66 +2469,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.base/java/util/List.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="604" column="56" selection-start-line="604" selection-start-column="56" selection-end-line="604" selection-end-column="56" />
-          <folding>
-            <element signature="docComment;class#List#0" />
-            <element signature="e#6329#7107#0" />
-            <element signature="e#7145#7318#0" />
-            <element signature="e#7352#8011#0" />
-            <element signature="e#8041#10052#0" />
-            <element signature="e#10119#11254#0" />
-            <element signature="e#11282#12444#0" />
-            <element signature="e#12518#13393#0" />
-            <element signature="e#13441#14697#0" />
-            <element signature="e#14750#16422#0" />
-            <element signature="e#16486#17447#0" />
-            <element signature="e#17493#18575#0" />
-            <element signature="e#18621#19902#0" />
-            <element signature="e#18621#20151#0" />
-            <element signature="e#20087#20145#1" />
-            <element signature="e#20157#23375#0" />
-            <element signature="e#23698#23964#0" />
-            <element signature="e#24020#24808#0" />
-            <element signature="e#24844#25520#0" />
-            <element signature="e#25584#25910#0" />
-            <element signature="e#28005#28634#0" />
-            <element signature="e#28692#29593#0" />
-            <element signature="e#29626#30526#0" />
-            <element signature="e#30587#30794#0" />
-            <element signature="e#30836#31679#0" />
-            <element signature="e#31743#33614#0" />
-            <element signature="e#33669#35205#0" />
-            <element signature="e#33669#35480#0" />
-            <element signature="e#35305#35385#1" />
-            <element signature="e#35391#35474#1" />
-            <element signature="e#35486#35754#0" />
-            <element signature="e#35845#36240#0" />
-            <element signature="e#36340#36771#0" />
-            <element signature="e#36881#37349#0" />
-            <element signature="e#37468#37971#0" />
-            <element signature="e#38100#38638#0" />
-            <element signature="e#38777#39349#0" />
-            <element signature="e#38777#39540#0" />
-            <element signature="e#39546#40157#0" />
-            <element signature="e#39546#40358#0" />
-            <element signature="e#40364#41011#0" />
-            <element signature="e#40364#41222#0" />
-            <element signature="e#41228#41909#0" />
-            <element signature="e#41228#42130#0" />
-            <element signature="e#42136#42852#0" />
-            <element signature="e#42136#43085#0" />
-            <element signature="e#43091#44128#0" />
-            <element signature="e#44133#44145#0" />
-            <element signature="e#43091#44667#0" />
-            <element signature="e#44255#44661#0" />
-            <element signature="e#44673#45522#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.base/java/lang/Object.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="284">
@@ -2505,19 +2490,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="123">
           <caret line="194" selection-start-line="194" selection-end-line="194" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.base/java/lang/String.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="1503" selection-start-line="1503" selection-end-line="1503" />
-          <folding>
-            <element signature="e#129105#129106#0" expanded="true" />
-            <element signature="e#129159#129160#0" expanded="true" />
-            <element signature="e#129243#129244#0" expanded="true" />
-            <element signature="e#129300#129301#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2571,15 +2543,44 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
+        <state relative-caret-position="1134">
           <caret line="85" selection-start-line="85" selection-end-line="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/otus/L031/MyArrayList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="157" selection-start-line="157" selection-end-line="157" />
+          <folding>
+            <element signature="method#MyArrayList#0;class#MyArrayList#0" />
+            <element signature="method#contains#0;class#MyArrayList#0" />
+            <element signature="method#iterator#0;class#MyArrayList#0" />
+            <element signature="method#listIterator#0;class#MyArrayList#0" />
+            <element signature="method#get#0;class#MyArrayList#0" />
+            <element signature="method#set#0;class#MyArrayList#0" />
+            <element signature="method#remove#0;class#MyArrayList#0" />
+            <element signature="method#checkIndexForOutOfBounds#0;class#MyArrayList#0" />
+            <element signature="method#toString#0;class#MyArrayList#0" />
+            <element signature="docComment;method#containsAll#0;class#MyArrayList#0" />
+            <element signature="method#containsAll#0;class#MyArrayList#0" />
+            <element signature="method#forEach#0;class#MyArrayList#0" />
+            <element signature="method#toArray#1;class#MyArrayList#0" />
+            <element signature="method#addAll#1;class#MyArrayList#0" />
+            <element signature="method#removeAll#0;class#MyArrayList#0" />
+            <element signature="method#removeIf#0;class#MyArrayList#0" />
+            <element signature="method#retainAll#0;class#MyArrayList#0" />
+            <element signature="method#replaceAll#0;class#MyArrayList#0" />
+            <element signature="method#listIterator#1;class#MyArrayList#0" />
+            <element signature="method#subList#0;class#MyArrayList#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.base/java/util/Collections.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="558" selection-start-line="558" selection-end-line="558" />
+        <state relative-caret-position="97">
+          <caret line="5448" column="30" selection-start-line="5448" selection-start-column="30" selection-end-line="5448" selection-end-column="30" />
           <folding>
             <element signature="docComment;class#Collections#0" />
             <element signature="e#2614#2712#0" />
@@ -3369,7 +3370,6 @@
             <element signature="e#209005#209172#1" />
             <element signature="e#209045#209162#1" />
             <element signature="e#209248#210710#0" />
-            <element signature="e#209248#210940#0" />
             <element signature="e#210946#212536#0" />
             <element signature="e#212652#212686#0" />
             <element signature="e#212652#215087#0" />
@@ -3424,65 +3424,389 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/otus/L031/MyArrayList.java">
+    <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.base/java/util/List.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="162" column="16" selection-start-line="162" selection-start-column="16" selection-end-line="162" selection-end-column="16" />
+        <state relative-caret-position="173">
+          <caret line="503" column="17" selection-start-line="503" selection-start-column="17" selection-end-line="503" selection-end-column="17" />
           <folding>
-            <element signature="method#MyArrayList#0;class#MyArrayList#0" />
-            <element signature="method#contains#0;class#MyArrayList#0" />
-            <element signature="e#683#816#1" />
-            <element signature="e#728#806#1" />
-            <element signature="method#iterator#0;class#MyArrayList#0" />
-            <element signature="class#917:1604" />
-            <element signature="method#hasNext#0;class#917:1604" />
-            <element signature="method#next#0;class#917:1604" />
-            <element signature="method#remove#0;class#917:1604" />
-            <element signature="method#listIterator#0;class#MyArrayList#0" />
-            <element signature="class#1722:3582" />
-            <element signature="method#hasNext#0;class#1722:3582" />
-            <element signature="method#next#0;class#1722:3582" />
-            <element signature="method#nextIndex#0;class#1722:3582" />
-            <element signature="method#previousIndex#0;class#1722:3582" />
-            <element signature="method#remove#0;class#1722:3582" />
-            <element signature="method#add#0;class#1722:3582" />
-            <element signature="method#add#0;class#MyArrayList#0" />
-            <element signature="method#add#1;class#MyArrayList#0" />
-            <element signature="e#4161#4479#1" />
-            <element signature="method#addAll#0;class#MyArrayList#0" />
-            <element signature="method#get#0;class#MyArrayList#0" />
-            <element signature="method#set#0;class#MyArrayList#0" />
-            <element signature="method#remove#0;class#MyArrayList#0" />
-            <element signature="e#5448#5588#1" />
-            <element signature="e#5495#5578#1" />
-            <element signature="method#checkIndexForOutOfBounds#0;class#MyArrayList#0" />
-            <element signature="method#random#0;class#MyArrayList#0" />
-            <element signature="e#6072#6322#1" />
-            <element signature="method#increase#0;class#MyArrayList#0" />
-            <element signature="method#toString#0;class#MyArrayList#0" />
-            <element signature="e#6621#6703#1" />
-            <element signature="docComment;method#containsAll#0;class#MyArrayList#0" />
-            <element signature="method#containsAll#0;class#MyArrayList#0" />
-            <element signature="method#forEach#0;class#MyArrayList#0" />
-            <element signature="method#toArray#1;class#MyArrayList#0" />
-            <element signature="method#addAll#1;class#MyArrayList#0" />
-            <element signature="method#removeAll#0;class#MyArrayList#0" />
-            <element signature="method#removeIf#0;class#MyArrayList#0" />
-            <element signature="method#retainAll#0;class#MyArrayList#0" />
-            <element signature="method#replaceAll#0;class#MyArrayList#0" />
-            <element signature="method#listIterator#1;class#MyArrayList#0" />
-            <element signature="method#subList#0;class#MyArrayList#0" />
+            <element signature="docComment;class#List#0" />
+            <element signature="e#6329#7107#0" />
+            <element signature="e#7145#7318#0" />
+            <element signature="e#7352#8011#0" />
+            <element signature="e#8041#10052#0" />
+            <element signature="e#10119#11254#0" />
+            <element signature="e#11282#12444#0" />
+            <element signature="e#12518#13393#0" />
+            <element signature="e#13441#14697#0" />
+            <element signature="e#14750#16422#0" />
+            <element signature="e#16486#17447#0" />
+            <element signature="e#17493#18575#0" />
+            <element signature="e#18621#19902#0" />
+            <element signature="e#18621#20151#0" />
+            <element signature="e#20087#20145#1" />
+            <element signature="e#23698#23964#0" />
+            <element signature="e#24020#24808#0" />
+            <element signature="e#24844#25520#0" />
+            <element signature="e#25584#25910#0" />
+            <element signature="e#28005#28634#0" />
+            <element signature="e#28692#29593#0" />
+            <element signature="e#29626#30526#0" />
+            <element signature="e#30587#30794#0" />
+            <element signature="e#30836#31679#0" />
+            <element signature="e#31743#33614#0" />
+            <element signature="e#33669#35205#0" />
+            <element signature="e#33669#35480#0" />
+            <element signature="e#35305#35385#1" />
+            <element signature="e#35391#35474#1" />
+            <element signature="e#35486#35754#0" />
+            <element signature="e#35845#36240#0" />
+            <element signature="e#36340#36771#0" />
+            <element signature="e#36881#37349#0" />
+            <element signature="e#37468#37971#0" />
+            <element signature="e#38100#38638#0" />
+            <element signature="e#38777#39349#0" />
+            <element signature="e#38777#39540#0" />
+            <element signature="e#39546#40157#0" />
+            <element signature="e#39546#40358#0" />
+            <element signature="e#40364#41011#0" />
+            <element signature="e#40364#41222#0" />
+            <element signature="e#41228#41909#0" />
+            <element signature="e#41228#42130#0" />
+            <element signature="e#42136#42852#0" />
+            <element signature="e#42136#43085#0" />
+            <element signature="e#43091#44128#0" />
+            <element signature="e#44133#44145#0" />
+            <element signature="e#43091#44667#0" />
+            <element signature="e#44255#44661#0" />
+            <element signature="e#44673#45522#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.base/java/util/Comparator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="108" column="17" selection-start-line="108" selection-start-column="17" selection-end-line="108" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.base/java/lang/String.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1670">
+          <caret line="628" lean-forward="true" selection-start-line="628" selection-end-line="628" />
+          <folding>
+            <element signature="docComment;class#String#0" />
+            <element signature="e#4494#4985#0" />
+            <element signature="e#5035#5419#0" />
+            <element signature="e#5455#5496#0" />
+            <element signature="e#5540#5603#0" />
+            <element signature="e#5681#7158#0" />
+            <element signature="initializer##0;class#String#0" />
+            <element signature="e#7258#7591#0" />
+            <element signature="e#7701#7913#0" />
+            <element signature="e#7701#8003#0" />
+            <element signature="e#8009#8437#0" />
+            <element signature="e#8009#8620#0" />
+            <element signature="e#8626#9010#0" />
+            <element signature="e#9100#9938#0" />
+            <element signature="e#10077#10231#0" />
+            <element signature="e#10237#11343#0" />
+            <element signature="e#10237#11951#0" />
+            <element signature="e#11492#11593#1" />
+            <element signature="e#11623#11848#1" />
+            <element signature="e#11728#11838#1" />
+            <element signature="e#11957#13552#0" />
+            <element signature="e#11957#14313#0" />
+            <element signature="e#13733#13834#1" />
+            <element signature="e#13885#14005#1" />
+            <element signature="e#14011#14307#1" />
+            <element signature="e#14140#14235#1" />
+            <element signature="e#14319#15571#0" />
+            <element signature="e#15704#16944#0" />
+            <element signature="e#15704#17394#0" />
+            <element signature="e#17400#18614#0" />
+            <element signature="e#17400#19001#0" />
+            <element signature="e#19007#19930#0" />
+            <element signature="e#19007#20089#0" />
+            <element signature="e#20095#20948#0" />
+            <element signature="e#21058#22075#0" />
+            <element signature="e#21058#22340#0" />
+            <element signature="e#22346#23002#0" />
+            <element signature="e#23086#23440#0" />
+            <element signature="e#23526#24143#0" />
+            <element signature="e#24227#24510#0" />
+            <element signature="e#24588#24802#0" />
+            <element signature="e#24879#25726#0" />
+            <element signature="e#24879#25928#0" />
+            <element signature="e#25787#25852#1" />
+            <element signature="e#25858#25922#1" />
+            <element signature="e#25934#26966#0" />
+            <element signature="e#25934#27270#0" />
+            <element signature="e#27031#27127#1" />
+            <element signature="e#27276#28336#0" />
+            <element signature="e#27276#28655#0" />
+            <element signature="e#28444#28517#1" />
+            <element signature="e#28542#28591#1" />
+            <element signature="e#28661#29606#0" />
+            <element signature="e#28661#29975#0" />
+            <element signature="e#29757#29819#1" />
+            <element signature="e#29844#29897#1" />
+            <element signature="e#29981#30936#0" />
+            <element signature="e#29981#31191#0" />
+            <element signature="e#31048#31110#1" />
+            <element signature="e#31197#32612#0" />
+            <element signature="e#31197#33026#0" />
+            <element signature="e#32843#32929#1" />
+            <element signature="e#32935#33020#1" />
+            <element signature="e#33032#34894#0" />
+            <element signature="e#33032#35374#0" />
+            <element signature="e#35191#35277#1" />
+            <element signature="e#35283#35368#1" />
+            <element signature="e#35380#36101#0" />
+            <element signature="e#35380#36336#0" />
+            <element signature="e#36342#37041#0" />
+            <element signature="e#36342#37218#0" />
+            <element signature="e#37224#37724#0" />
+            <element signature="e#37819#38498#0" />
+            <element signature="e#37819#38953#0" />
+            <element signature="e#38574#38610#1" />
+            <element signature="e#38651#38925#1" />
+            <element signature="e#38744#38915#1" />
+            <element signature="e#38959#39682#0" />
+            <element signature="e#39794#40473#0" />
+            <element signature="e#39919#39956#1" />
+            <element signature="e#40057#40245#1" />
+            <element signature="e#40130#40235#1" />
+            <element signature="e#40168#40221#1" />
+            <element signature="e#40251#40446#1" />
+            <element signature="e#40282#40377#1" />
+            <element signature="e#40479#41221#0" />
+            <element signature="e#40479#42295#0" />
+            <element signature="e#41376#41668#1" />
+            <element signature="e#41422#41565#1" />
+            <element signature="e#41457#41551#0" />
+            <element signature="e#41571#41658#1" />
+            <element signature="e#41735#41777#1" />
+            <element signature="e#41880#41917#1" />
+            <element signature="e#41975#42149#1" />
+            <element signature="e#42017#42139#1" />
+            <element signature="e#42072#42125#1" />
+            <element signature="e#42155#42268#1" />
+            <element signature="e#42213#42258#1" />
+            <element signature="e#42301#43559#0" />
+            <element signature="e#42301#43840#0" />
+            <element signature="e#43846#46716#0" />
+            <element signature="e#46443#46580#1" />
+            <element signature="e#47316#48181#0" />
+            <element signature="e#47581#48052#0" />
+            <element signature="e#47734#47893#1" />
+            <element signature="e#48062#48103#0" />
+            <element signature="e#48062#48175#0" />
+            <element signature="e#48187#49126#0" />
+            <element signature="e#49245#50989#0" />
+            <element signature="e#49245#52349#0" />
+            <element signature="e#51346#51383#1" />
+            <element signature="e#51422#51755#1" />
+            <element signature="e#51466#51593#1" />
+            <element signature="e#51624#51745#1" />
+            <element signature="e#51678#51731#1" />
+            <element signature="e#51761#52322#1" />
+            <element signature="e#51798#52052#1" />
+            <element signature="e#51834#52038#1" />
+            <element signature="e#51959#52020#1" />
+            <element signature="e#52058#52312#1" />
+            <element signature="e#52094#52298#1" />
+            <element signature="e#52219#52280#1" />
+            <element signature="e#52355#54969#0" />
+            <element signature="e#52355#55931#0" />
+            <element signature="e#55111#55186#1" />
+            <element signature="e#55405#55442#1" />
+            <element signature="e#55541#55734#1" />
+            <element signature="e#55937#56746#0" />
+            <element signature="e#55937#57680#0" />
+            <element signature="e#56919#56956#1" />
+            <element signature="e#57105#57314#1" />
+            <element signature="e#57193#57304#1" />
+            <element signature="e#57237#57290#1" />
+            <element signature="e#57320#57653#1" />
+            <element signature="e#57350#57418#1" />
+            <element signature="e#57498#57643#1" />
+            <element signature="e#57577#57629#1" />
+            <element signature="e#57686#58268#0" />
+            <element signature="e#58365#58907#0" />
+            <element signature="e#59027#59553#0" />
+            <element signature="e#59027#59809#0" />
+            <element signature="e#59644#59785#1" />
+            <element signature="e#59815#60926#0" />
+            <element signature="e#61002#62912#0" />
+            <element signature="e#61002#63108#0" />
+            <element signature="e#63114#64133#0" />
+            <element signature="e#64228#65983#0" />
+            <element signature="e#64228#66191#0" />
+            <element signature="e#66197#66727#0" />
+            <element signature="e#66197#67109#0" />
+            <element signature="e#66801#66954#1" />
+            <element signature="e#66986#67043#1" />
+            <element signature="e#67115#67875#0" />
+            <element signature="e#68005#68499#0" />
+            <element signature="e#68005#69522#0" />
+            <element signature="e#68774#68837#1" />
+            <element signature="e#68865#68903#1" />
+            <element signature="e#68931#68972#1" />
+            <element signature="e#69006#69040#1" />
+            <element signature="e#69075#69284#1" />
+            <element signature="e#69317#69379#1" />
+            <element signature="e#69528#70171#0" />
+            <element signature="e#70267#71049#0" />
+            <element signature="e#71187#71704#0" />
+            <element signature="e#71187#72880#0" />
+            <element signature="e#72169#72216#1" />
+            <element signature="e#72244#72278#1" />
+            <element signature="e#72349#72390#1" />
+            <element signature="e#72425#72642#1" />
+            <element signature="e#72675#72736#1" />
+            <element signature="e#72886#73590#0" />
+            <element signature="e#72886#74114#0" />
+            <element signature="e#73665#73743#1" />
+            <element signature="e#73812#73886#1" />
+            <element signature="e#73916#73952#1" />
+            <element signature="e#74120#75059#0" />
+            <element signature="e#74120#75503#0" />
+            <element signature="e#75305#75341#1" />
+            <element signature="e#75509#76513#0" />
+            <element signature="e#76646#77565#0" />
+            <element signature="e#76646#78232#0" />
+            <element signature="e#77661#77697#1" />
+            <element signature="e#77734#78029#1" />
+            <element signature="e#78238#79562#0" />
+            <element signature="e#78238#79930#0" />
+            <element signature="e#79651#79903#1" />
+            <element signature="e#79850#79893#1" />
+            <element signature="e#79936#80857#0" />
+            <element signature="e#80957#81209#0" />
+            <element signature="e#81310#82916#0" />
+            <element signature="e#81310#83068#0" />
+            <element signature="e#83074#84681#0" />
+            <element signature="e#83074#84829#0" />
+            <element signature="e#84835#85369#0" />
+            <element signature="e#84835#86186#0" />
+            <element signature="e#85589#85625#1" />
+            <element signature="e#85830#85883#1" />
+            <element signature="e#85972#86062#1" />
+            <element signature="e#86192#90628#0" />
+            <element signature="e#86192#92775#0" />
+            <element signature="e#91440#92711#1" />
+            <element signature="e#91642#92071#1" />
+            <element signature="e#91701#91808#1" />
+            <element signature="e#91814#92057#1" />
+            <element signature="e#91819#91830#0" />
+            <element signature="e#92433#92583#1" />
+            <element signature="e#92516#92569#1" />
+            <element signature="e#92781#94284#0" />
+            <element signature="e#94370#95262#0" />
+            <element signature="e#94370#95679#0" />
+            <element signature="e#95600#95639#1" />
+            <element signature="e#95685#97050#0" />
+            <element signature="e#95685#97425#0" />
+            <element signature="e#97346#97385#1" />
+            <element signature="e#97431#99655#0" />
+            <element signature="e#97431#99856#0" />
+            <element signature="e#99862#100772#0" />
+            <element signature="e#100867#103075#0" />
+            <element signature="e#100867#103276#0" />
+            <element signature="e#103282#104200#0" />
+            <element signature="e#104295#105894#0" />
+            <element signature="e#104295#106086#0" />
+            <element signature="e#106092#107113#0" />
+            <element signature="e#106092#107308#0" />
+            <element signature="e#107314#108242#0" />
+            <element signature="e#107314#108458#0" />
+            <element signature="e#108464#109384#0" />
+            <element signature="e#108464#109603#0" />
+            <element signature="e#109609#110047#0" />
+            <element signature="e#110141#110357#0" />
+            <element signature="e#110202#110274#1" />
+            <element signature="e#110280#110351#1" />
+            <element signature="e#110363#111640#0" />
+            <element signature="e#110363#111790#0" />
+            <element signature="e#111796#111917#0" />
+            <element signature="e#111981#112344#0" />
+            <element signature="e#111981#112633#0" />
+            <element signature="e#112640#113193#0" />
+            <element signature="e#112640#113492#0" />
+            <element signature="e#113498#113791#0" />
+            <element signature="e#113498#113943#0" />
+            <element signature="e#113949#115670#0" />
+            <element signature="e#113949#115805#0" />
+            <element signature="e#115811#117485#0" />
+            <element signature="e#115811#117631#0" />
+            <element signature="e#117637#117993#0" />
+            <element signature="e#118108#118504#0" />
+            <element signature="e#118597#119532#0" />
+            <element signature="e#119663#120231#0" />
+            <element signature="e#120366#120577#0" />
+            <element signature="e#120674#120990#0" />
+            <element signature="e#121085#121337#0" />
+            <element signature="e#121085#121578#0" />
+            <element signature="e#121439#121514#1" />
+            <element signature="e#121584#121958#0" />
+            <element signature="e#122048#122414#0" />
+            <element signature="e#122502#122874#0" />
+            <element signature="e#122964#123343#0" />
+            <element signature="e#123435#124580#0" />
+            <element signature="e#124621#125197#0" />
+            <element signature="e#124621#126340#0" />
+            <element signature="e#125259#125349#1" />
+            <element signature="e#125374#125410#1" />
+            <element signature="e#125485#125519#1" />
+            <element signature="e#125542#125693#1" />
+            <element signature="e#125739#125914#1" />
+            <element signature="e#126137#126217#1" />
+            <element signature="e#126416#126817#0" />
+            <element signature="e#126416#127135#0" />
+            <element signature="e#126906#126995#1" />
+            <element signature="e#127001#127129#1" />
+            <element signature="e#127141#128098#0" />
+            <element signature="e#127659#127760#1" />
+            <element signature="e#127790#128005#1" />
+            <element signature="e#127885#127995#1" />
+            <element signature="e#128104#128901#0" />
+            <element signature="e#128399#128504#1" />
+            <element signature="e#128510#128895#1" />
+            <element signature="e#128545#128787#1" />
+            <element signature="e#128647#128773#1" />
+            <element signature="e#128906#129086#0" />
+            <element signature="e#129392#129783#0" />
+            <element signature="e#129617#129777#1" />
+            <element signature="e#129789#130174#0" />
+            <element signature="e#130006#130168#1" />
+            <element signature="e#130180#130778#0" />
+            <element signature="e#130625#130772#1" />
+            <element signature="e#130784#131365#0" />
+            <element signature="e#131218#131359#1" />
+            <element signature="e#131371#131842#0" />
+            <element signature="e#131371#132458#0" />
+            <element signature="e#131961#132050#1" />
+            <element signature="e#132097#132184#1" />
+            <element signature="e#132241#132335#1" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/otus/L031/MyArrListUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="22" lean-forward="true" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/otus/L031/MyArrayListTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="90" column="32" selection-start-line="90" selection-start-column="32" selection-end-line="90" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="-889">
+          <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
         </state>
       </provider>
     </entry>

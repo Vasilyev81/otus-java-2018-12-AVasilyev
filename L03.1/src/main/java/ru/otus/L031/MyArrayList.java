@@ -130,7 +130,7 @@ public class MyArrayList<T> implements List<T> {
     }
 
     public boolean add(T t) {
-        if ((size + 1) >= internalStorage.length) increase((int) (internalStorage.length * 1.3));
+        if ((size + 1) >= internalStorage.length) increase();
         internalStorage[size] = t;
         size++;
         return true;
@@ -138,7 +138,7 @@ public class MyArrayList<T> implements List<T> {
 
     public void add(int index, T element) {
         checkIndexForOutOfBounds(index);
-        if ((size + 1) >= internalStorage.length) increase((int) (internalStorage.length * 1.3));
+        if ((size + 1) >= internalStorage.length) increase();
         if (index == size) this.add(element);
         else {
             Object[] tail = Arrays.copyOfRange(internalStorage, index, size);
@@ -150,7 +150,7 @@ public class MyArrayList<T> implements List<T> {
     }
 
     public boolean addAll(Collection<? extends T> c) {
-        if (c.size() > (INITIAL_CAPACITY - size)) increase(c.size());
+        if (c.size() > (internalStorage.length - size)) increaseToFit(c.size());
         System.arraycopy(c.toArray(), 0, internalStorage, size, c.size());
         size = size + c.size();
         return true;
@@ -201,19 +201,11 @@ public class MyArrayList<T> implements List<T> {
             throw new IndexOutOfBoundsException("Index is out of Array bounds, index: " + index);
     }
 
-    public void random() {
-        Object temp;
-        Random rnd = new Random();
-        for (int i = 1; i <= size; i++) {
-            int index0 = rnd.nextInt(size);
-            int index1 = rnd.nextInt(size);
-            temp = internalStorage[index0];
-            internalStorage[index0] = internalStorage[index1];
-            internalStorage[index1] = temp;
-        }
+    private void increase() {
+        int newSize = size  * 2;
+        internalStorage = Arrays.copyOf(internalStorage, newSize);
     }
-
-    private void increase(int addSize) {
+    private void increaseToFit(int addSize) {
         int newSize = (int) ((size + addSize) * 1.3);
         internalStorage = Arrays.copyOf(internalStorage, newSize);
     }
