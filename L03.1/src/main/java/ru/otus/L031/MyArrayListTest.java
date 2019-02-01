@@ -7,15 +7,18 @@ public class MyArrayListTest {
 
     public static void main(String[] args) throws InterruptedException {
 
-        MyArrayList myList = new MyArrayList();
+        List<String> myList = new MyArrayList();
 
         List<String> stdArrList = Arrays.asList("ABC", "DEF", "GHI", "JKL", "MNO", "PQR", "STW", "XYZ");
         System.out.println("Standard ArrayList:");
         System.out.println(stdArrList.toString());
+
+        myList.addAll(stdArrList);
+
         System.out.println("myArrList: " + myList.toString());
 
         for (int i = 0; i < 5; i++) {
-            for (Object element : stdArrList) {
+            for (String element : stdArrList) {
                 myList.add(0, element);
                 System.out.println(myList.toString());
                 //Thread.sleep(700);
@@ -25,16 +28,15 @@ public class MyArrayListTest {
         myList.clear();
 
         for (int i = 0; i < 5; i++) {
-            for (Object element : stdArrList) {
+            for (String element : stdArrList) {
                 myList.add(element);
                 System.out.println(myList.toString());
-                //Thread.sleep(700);
             }
         }
 
-        MyArrayList<Integer> intArrLst = new MyArrayList<>();
-        IntStream.range(1, 81).forEach(intArrLst::add);
-        System.out.println(intArrLst.toString());
+        List<Integer> myIntList = new MyArrayList<>();
+        IntStream.range(1, 81).forEach(myIntList::add);
+        System.out.println(myIntList.toString());
 
         myList.addAll(stdArrList);
         myList.add(1, "100");
@@ -55,7 +57,7 @@ public class MyArrayListTest {
         }
 
         System.out.println("MyArrayList random:");
-        myList.random();
+        myList = MyArrListUtil.random(myList);
         System.out.println(myList.toString());
 
         System.out.println("Collections.copy()");
@@ -64,7 +66,7 @@ public class MyArrayListTest {
 
 
         System.out.println("MyArrayList sort:");
-        myList.sort();
+        myList.sort(String::compareTo);
         System.out.println(myList.toString());
 
         System.out.println("MyArrayList add single object without index:");
