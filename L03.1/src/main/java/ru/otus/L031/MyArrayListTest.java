@@ -5,9 +5,9 @@ import java.util.stream.IntStream;
 
 public class MyArrayListTest {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args){
 
-        List<String> myList = new MyArrayList();
+        List<String> myList = new MyArrayList<>();
 
         List<String> stdArrList = Arrays.asList("ABC", "DEF", "GHI", "JKL", "MNO", "PQR", "STW", "XYZ");
         System.out.println("Standard ArrayList:");
