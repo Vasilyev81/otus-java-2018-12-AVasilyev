@@ -9,7 +9,7 @@
     <version>1.0</version>
 
     <name>L04.1</name>
-    <description>homework for L02.1</description>
+    <description>homework for L04.1</description>
 
     <developers>
         <developer>
@@ -24,14 +24,6 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.openjdk.jol</groupId>
-            <artifactId>jol-core</artifactId>
-            <version>0.9</version>
-        </dependency>
-    </dependencies>
-
     <build>
         <finalName>${project.name}</finalName>
         <plugins>
@@ -41,7 +33,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>ru.otus.l021.Main</mainClass>
+                            <mainClass>ru.otus.L041.GCMain</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -66,7 +58,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>ru.otus.l041.Main</mainClass>
+                            <mainClass>ru.otus.L041.GCMain</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
