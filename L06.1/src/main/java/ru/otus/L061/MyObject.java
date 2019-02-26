@@ -1,13 +1,13 @@
 package ru.otus.L061;
 
 class MyObject {
-    private byte[] array;
+	private byte[] array;
 
-    MyObject(int sqrSize) {
-        this.array = new byte[sqrSize * sqrSize];
-    }
+	MyObject(int sqrSize) {
+		this.array = new byte[sqrSize * sqrSize];
+	}
 
-    int arraySize() {
-        return array.length;
-    }
+	int arraySize() {
+		return array.length;
+	}
 }
