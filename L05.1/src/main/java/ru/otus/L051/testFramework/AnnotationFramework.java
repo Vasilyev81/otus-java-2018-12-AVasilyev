@@ -1,5 +1,8 @@
-package ru.otus.L051_AnnotationFramework;
+package ru.otus.L051.testFramework;
 
+import ru.otus.L051.testFramework.annotations.*;
+
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
 
@@ -20,21 +23,27 @@ public class AnnotationFramework {
 			if (method.isAnnotationPresent(AfterAll.class)) afterAllMethods.add(method);
 			if (method.isAnnotationPresent(Test.class)) testMethods.add(method);
 		}
-		for (Method beforeAllMethod : beforeAllMethods) {
-			ReflectionHelper.callMethod(beforeAllMethod, clazz);
+		try {
+			ReflectionHelper.callMethods(beforeAllMethods, clazz);
+		} catch (IllegalAccessException | InvocationTargetException e) {
+			e.printStackTrace();
 		}
 		for (Method testMethod : testMethods) {
-			Object instance = ReflectionHelper.instantiate(clazz);
-			for (Method beforeEachMethod : beforeEachMethods) {
-				ReflectionHelper.callMethod(beforeEachMethod, instance);
-			}
-			ReflectionHelper.callMethod(testMethod, instance);
-			for (Method afterEachMethod : afterEachMethods) {
-				ReflectionHelper.callMethod(afterEachMethod, instance);
+			try {
+				Object instance = ReflectionHelper.instantiate(clazz);
+				ReflectionHelper.callMethods(beforeEachMethods, instance);
+				ReflectionHelper.callMethod(testMethod, instance);
+				try {ReflectionHelper.callMethods(afterEachMethods, instance);} catch (IllegalAccessException | InvocationTargetException e) {
+					e.printStackTrace();
+				}
+			} catch (IllegalAccessException | InvocationTargetException e) {
+				e.printStackTrace();
 			}
 		}
-		for (Method afterAllMethod : afterAllMethods) {
-			ReflectionHelper.callMethod(afterAllMethod, clazz);
+		try {
+			ReflectionHelper.callMethods(afterAllMethods, clazz);
+		} catch (IllegalAccessException | InvocationTargetException e) {
+			e.printStackTrace();
 		}
 	}
 }

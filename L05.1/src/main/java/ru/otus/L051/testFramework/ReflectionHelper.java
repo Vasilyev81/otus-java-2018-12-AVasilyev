@@ -1,9 +1,10 @@
-package ru.otus.L051_AnnotationFramework;
+package ru.otus.L051.testFramework;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.*;
 import java.util.Arrays;
+import java.util.List;
 
 @SuppressWarnings({"SameParameterValue", "BooleanVariableAlwaysNegated"})
 public final class ReflectionHelper {
@@ -21,7 +22,7 @@ public final class ReflectionHelper {
 		} catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
 			e.printStackTrace();
 		} finally {
-			if (!isAccessible && (constructor!=null)) constructor.setAccessible(false);
+			if (!isAccessible && (constructor != null)) constructor.setAccessible(false);
 		}
 		else try {
 			final Class<?>[] classes = toClasses(args);
@@ -87,22 +88,22 @@ public final class ReflectionHelper {
 		return null;
 	}
 
-	static Object callMethod(@NotNull Method method, @NotNull Object object, Object... args) {
-		boolean isAccessible = true;
+	static Object callMethod(@NotNull Method method, @NotNull Object object, Object... args) throws InvocationTargetException, IllegalAccessException {
+		Object result;
+		boolean isAccessible;
 		boolean isStatic;
-		try {
-			isStatic = Modifier.isStatic(method.getModifiers());
-			isAccessible = method.canAccess((isStatic) ? null : object);
-			method.setAccessible(true);
-			return method.invoke((isStatic) ? null : object, args);
-		} catch (IllegalAccessException | InvocationTargetException e) {
-			e.printStackTrace();
-		} finally {
-			if (!isAccessible) {
-				method.setAccessible(false);
-			}
+		isStatic = Modifier.isStatic(method.getModifiers());
+		isAccessible = method.canAccess((isStatic) ? null : object);
+		method.setAccessible(true);
+		result = method.invoke((isStatic) ? null : object, args);
+		if (!isAccessible) method.setAccessible(false);
+		return result;
+	}
+
+	static void callMethods(@NotNull List<? extends Method> methods, @NotNull Object object) throws InvocationTargetException, IllegalAccessException {
+		for (Method method : methods) {
+			callMethod(method, object);
 		}
-		return null;
 	}
 
 	private static Class<?>[] toClasses(Object[] args) {

@@ -1,8 +1,8 @@
-package ru.otus.L051;
+package ru.otus.L051.testData;
 
-import ru.otus.L051_AnnotationFramework.*;
+import ru.otus.L051.testFramework.annotations.*;
 
-class AnnotationsTest {
+public class AnnotationsTest {
 	@BeforeAll
 	static void beforeAll() {
 		System.out.println("BeforeAll");

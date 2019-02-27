@@ -1,8 +1,8 @@
 package ru.otus.L051;
 
 
-        import ru.otus.L051_AnnotationFramework.AnnotationFramework;
-        import ru.otus.L051_AnnotationFramework.ReflectionHelper;
+        import ru.otus.L051.testFramework.AnnotationFramework;
+        import ru.otus.L051.testData.AnnotationsTest;
 
 public class Main {
 
