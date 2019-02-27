@@ -1,4 +1,4 @@
-package ru.otus.L051;
+package ru.otus.L051_AnnotationFramework;
 
 import java.lang.annotation.*;
 
@@ -6,5 +6,5 @@ import java.lang.annotation.*;
 @Target(ElementType.METHOD)
 @Inherited
 
-public @interface BeforeAll {
+public @interface Test {
 }

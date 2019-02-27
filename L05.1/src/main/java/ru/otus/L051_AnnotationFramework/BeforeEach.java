@@ -1,4 +1,4 @@
-package ru.otus.L051;
+package ru.otus.L051_AnnotationFramework;
 
 import java.lang.annotation.*;
 
