@@ -9,10 +9,11 @@ public class CacheMain {
 	}
 
 	private void myCache() throws InterruptedException {
+
 		int size = 1000;
 		int myObjInitSize = 1024;
 		SoftRefCacheEngine<Integer, MyObject> cache = new SoftRefCacheEngine<>(size);
-
+		cache.setExternalStorage(new VirtualExternalStorage());
 		for (int i = 0; i < size; i++) {
 			cache.put(i, new MyObject(myObjInitSize));
 			if (i % 10 == 0) {

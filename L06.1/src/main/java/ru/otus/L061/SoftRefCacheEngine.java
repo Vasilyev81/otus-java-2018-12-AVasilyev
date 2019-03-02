@@ -12,14 +12,14 @@ public class SoftRefCacheEngine<K, V> {
 	private Integer maxCapacity;
 	private Integer hits;
 	private Integer misses;
-	private Map externalStorage;
+	private ExternalStorage externalStorage;
 
-	public void setExternalStorage(Map externalStorage) {
+	public void setExternalStorage(ExternalStorage externalStorage) {
 		this.externalStorage = externalStorage;
 	}
 
 	public SoftRefCacheEngine() {
-		this.storage = new LinkedHashMap();
+		storage = new LinkedHashMap();
 		maxCapacity = DEFAULT_MAX_CAPACITY;
 		hits = 0;
 		misses = 0;
@@ -42,20 +42,20 @@ public class SoftRefCacheEngine<K, V> {
 	}
 
 	public V get(K key) {
-		V value = (V) ((SoftReference) storage.get(key)).get();
-		if (value == null) {
+		SoftReference softRef = storage.get(key);
+		if (softRef != null || softRef.get() != null) {
+			hits++;
+			return (V) softRef.get();
+		} else {
 			misses++;
-			value = getValueFromExternalStorage(key);
-			SoftReference val = new SoftReference<>(value);
-			storage.put(key, val);
-		} else hits++;
-		return value;
+			V value = getValueFromExternalStorage(key);
+			this.put(key, value);
+			return value;
+		}
 	}
 
 	private V getValueFromExternalStorage(K key) {
-		//V value = (V) externalStorage.get(key);
-		V value = (V) (new MyObject(1000));
-		return value;
+		return (V) externalStorage.get(key);
 	}
 
 	public int getHitCount() {
