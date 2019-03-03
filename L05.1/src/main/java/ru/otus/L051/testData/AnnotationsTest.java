@@ -1,6 +1,5 @@
 package ru.otus.L051.testData;
 
-import org.jetbrains.annotations.Contract;
 import ru.otus.L051.testFramework.annotations.*;
 
 public class AnnotationsTest {
@@ -56,6 +55,7 @@ public class AnnotationsTest {
 	static void afterAll() {
 		System.out.println("AfterAll");
 	}
+
 	@AfterAll
 	static void afterAll2() {
 		System.out.println("AfterAll2");
