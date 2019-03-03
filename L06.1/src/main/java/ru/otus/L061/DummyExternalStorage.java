@@ -1,6 +1,6 @@
 package ru.otus.L061;
 
-public class VirtualExternalStorage implements ExternalStorage {
+public class DummyExternalStorage implements ExternalStorage {
 
 	@Override
 	public <V, K> V get(K key) {
