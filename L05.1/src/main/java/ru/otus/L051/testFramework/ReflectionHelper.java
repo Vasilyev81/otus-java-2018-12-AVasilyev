@@ -88,21 +88,35 @@ public final class ReflectionHelper {
 		return null;
 	}
 
-	static Object callMethod(@NotNull Method method, @NotNull Object object, Object... args) throws InvocationTargetException, IllegalAccessException {
-		Object result;
-		boolean isAccessible;
-		boolean isStatic;
-		isStatic = Modifier.isStatic(method.getModifiers());
-		isAccessible = method.canAccess((isStatic) ? null : object);
-		method.setAccessible(true);
-		result = method.invoke((isStatic) ? null : object, args);
-		if (!isAccessible) method.setAccessible(false);
-		return result;
+	static Object callMethod(@NotNull Method method, @NotNull Object object, Object... args) throws AFException {
+		try {
+			Object result;
+			boolean isAccessible;
+			boolean isStatic;
+			isStatic = Modifier.isStatic(method.getModifiers());
+			isAccessible = method.canAccess((isStatic) ? null : object);
+			method.setAccessible(true);
+			result = method.invoke((isStatic) ? null : object, args);
+			if (!isAccessible) method.setAccessible(false);
+			return result;
+		} catch (InvocationTargetException | IllegalAccessException e) {
+			throw new AFException(e, method, object, args);
+		}
 	}
 
-	static void callMethods(@NotNull List<? extends Method> methods, @NotNull Object object) throws InvocationTargetException, IllegalAccessException {
+	static void callMethodsThrowingExceptions(@NotNull List<? extends Method> methods, @NotNull Object object) throws AFException {
 		for (Method method : methods) {
 			callMethod(method, object);
+		}
+	}
+
+	static void callMethodsCatchingExceptions(@NotNull List<? extends Method> methods, @NotNull Object object) {
+		for (Method method : methods) {
+			try {
+				callMethod(method, object);
+			} catch (AFException e) {
+				System.err.println(e.getCircumstances());
+			}
 		}
 	}
 

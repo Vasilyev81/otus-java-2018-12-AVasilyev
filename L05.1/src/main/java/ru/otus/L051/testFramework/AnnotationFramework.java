@@ -2,7 +2,6 @@ package ru.otus.L051.testFramework;
 
 import ru.otus.L051.testFramework.annotations.*;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
 
@@ -24,26 +23,20 @@ public class AnnotationFramework {
 			if (method.isAnnotationPresent(Test.class)) testMethods.add(method);
 		}
 		try {
-			ReflectionHelper.callMethods(beforeAllMethods, clazz);
-		} catch (IllegalAccessException | InvocationTargetException e) {
-			e.printStackTrace();
-		}
-		for (Method testMethod : testMethods) {
-			try {
+			ReflectionHelper.callMethodsThrowingExceptions(beforeAllMethods, clazz);
+			for (Method testMethod : testMethods) {
 				Object instance = ReflectionHelper.instantiate(clazz);
-				ReflectionHelper.callMethods(beforeEachMethods, instance);
-				ReflectionHelper.callMethod(testMethod, instance);
-				try {ReflectionHelper.callMethods(afterEachMethods, instance);} catch (IllegalAccessException | InvocationTargetException e) {
-					e.printStackTrace();
+				try {
+					ReflectionHelper.callMethodsThrowingExceptions(beforeEachMethods, instance);
+					ReflectionHelper.callMethod(testMethod, instance);
+				} catch (AFException e) {
+					System.err.println(e.getCircumstances());
 				}
-			} catch (IllegalAccessException | InvocationTargetException e) {
-				e.printStackTrace();
+				ReflectionHelper.callMethodsCatchingExceptions(afterEachMethods, instance);
 			}
+		} catch (AFException e) {
+			System.err.println(e.getCircumstances());
 		}
-		try {
-			ReflectionHelper.callMethods(afterAllMethods, clazz);
-		} catch (IllegalAccessException | InvocationTargetException e) {
-			e.printStackTrace();
-		}
+		ReflectionHelper.callMethodsCatchingExceptions(afterAllMethods, clazz);
 	}
 }

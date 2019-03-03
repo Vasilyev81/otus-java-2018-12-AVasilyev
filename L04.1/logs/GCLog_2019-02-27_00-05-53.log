@@ -1,0 +1,18 @@
+Logger initialized at: 2019-02-27_00-05-5300-05-53
+Total collections time per minute: 0
+
+00-06-53
+GC name: G1 Young Generation, number of collections per minute: 131
+GC name: G1 Old Generation, number of collections per minute: 12
+Total collections time per minute: 41052
+
+00-07-53
+GC name: G1 Young Generation, number of collections per minute: 96
+GC name: G1 Old Generation, number of collections per minute: 14
+Total collections time per minute: 45121
+
+00-08-55
+GC name: G1 Young Generation, number of collections per minute: 109
+GC name: G1 Old Generation, number of collections per minute: 13
+Total collections time per minute: 41547
+
