@@ -1,7 +1,6 @@
 package ru.otus.l101.dao;
 
-import ru.otus.l101.dao.DataSet;
-
+@TableName(tableName = "users")
 public class UserDataSet extends DataSet {
 	private final String name;
 	private int age;
@@ -17,6 +16,14 @@ public class UserDataSet extends DataSet {
 		this.age = age;
 	}
 
+	public UserDataSet(String name) {
+		this.name = name;
+	}
+
+	public UserDataSet() {
+		name = "";
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -28,6 +35,7 @@ public class UserDataSet extends DataSet {
 	public void setAge(int age) {
 		this.age = age;
 	}
+
 
 	public String toString() {
 		return "UserDataSet id:" + getId() + ", name: " + getName() + ", age: " + getAge() + ".";

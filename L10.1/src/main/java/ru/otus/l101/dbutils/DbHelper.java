@@ -26,11 +26,17 @@ public class DbHelper {
 
 	public void createUsersTable() throws SQLException {
 		Statement statement = conn.createStatement();
-		statement.executeUpdate(createTableSQL);//Error: Incorrect table definition; there can be only one auto column and it must be defined as a key
+		statement.executeUpdate(createTableSQL);
+		statement.close();
 	}
 
 	public void dropUsersTable() throws SQLException {
 		Statement statement = conn.createStatement();
 		statement.executeUpdate(dropTableSQL);
+		statement.close();
+	}
+
+	public void closeConnection() throws SQLException {
+		conn.close();
 	}
 }
