@@ -4,7 +4,10 @@ import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.*;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @SuppressWarnings({"SameParameterValue", "BooleanVariableAlwaysNegated"})
 public final class ReflectionHelper {
