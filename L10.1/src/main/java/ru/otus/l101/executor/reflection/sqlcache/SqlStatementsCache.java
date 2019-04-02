@@ -1,4 +1,4 @@
-package ru.otus.l101.executor.reflection.sqlcash;
+package ru.otus.l101.executor.reflection.sqlcache;
 
 import ru.otus.l101.dao.DataSet;
 
@@ -7,12 +7,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SqlStatementsCash {
+public class SqlStatementsCache {
 	private SqlStringFactory sqlFactory;
 	private Map<Class, String> sqlToSaveClass;
 	private Map<Class, String> sqlToLoadClass;
 
-	public SqlStatementsCash(String tableName) {
+	public SqlStatementsCache(String tableName) {
 		this.sqlFactory = new SqlStringFactory(tableName);
 		this.sqlToSaveClass = new HashMap<>();
 		this.sqlToLoadClass = new HashMap<>();

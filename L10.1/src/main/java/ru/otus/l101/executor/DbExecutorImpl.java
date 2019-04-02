@@ -4,7 +4,7 @@ import ru.otus.l101.dao.DataSet;
 import ru.otus.l101.dao.TableName;
 import ru.otus.l101.dbutils.DbHelper;
 import ru.otus.l101.executor.reflection.ReflectionHelper;
-import ru.otus.l101.executor.reflection.sqlcash.SqlStatementsCash;
+import ru.otus.l101.executor.reflection.sqlcache.SqlStatementsCache;
 
 import java.math.BigInteger;
 import java.sql.*;
@@ -12,13 +12,13 @@ import java.util.*;
 
 public class DbExecutorImpl implements DbExecutor {
 	private final Connection conn;
-	private SqlStatementsCash sqlCash;
+	private SqlStatementsCache sqlCash;
 	private DbHelper dbHelper;
 
 	public DbExecutorImpl(Connection conn, DbHelper dbHelper) {
 		this.conn = conn;
 		this.dbHelper = dbHelper;
-		this.sqlCash = new SqlStatementsCash(dbHelper.getDefaultTableName());
+		this.sqlCash = new SqlStatementsCache(dbHelper.getDefaultTableName());
 	}
 
 	@Override
@@ -28,7 +28,7 @@ public class DbExecutorImpl implements DbExecutor {
 
 	@Override
 	public <T extends DataSet> void save(T user) throws SQLException {
-		checkTableExist(user);
+		assureTableExist(user);
 		String preparedSql = sqlCash.getSqlToSaveClass(user.getClass());
 		PreparedStatement preparedStatement = conn.prepareStatement(preparedSql, Statement.RETURN_GENERATED_KEYS);
 		List<String> fieldsNames = sqlCash.getClassStructure(user.getClass());
@@ -48,7 +48,7 @@ public class DbExecutorImpl implements DbExecutor {
 		System.out.println("Save to DB & save created 'id' to object: " + user);
 	}
 
-	private <T extends DataSet> void checkTableExist(T user) throws SQLException{
+	private <T extends DataSet> void assureTableExist(T user) throws SQLException{
 		String tableName = null;
 		Class<T> clazz = (Class<T>) user.getClass();
 		if (clazz.isAnnotationPresent(TableName.class)) tableName = clazz.getAnnotation(TableName.class).tableName();
