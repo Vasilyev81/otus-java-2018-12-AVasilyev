@@ -51,7 +51,6 @@ public final class ReflectionHelper {
 		} finally {
 			if (!isAccessible) constructor.setAccessible(false);
 		}
-		System.out.println("");
 		for(int index = 0; index < fielsNames.size(); index++){
 			setFieldValue(instance, fielsNames.get(index), values.get(index));
 		}

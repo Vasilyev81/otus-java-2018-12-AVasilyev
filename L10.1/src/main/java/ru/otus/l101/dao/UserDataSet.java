@@ -1,6 +1,6 @@
 package ru.otus.l101.dao;
 
-@TableName(tableName = "users")
+@TableName(tableName = "jupiter")
 public class UserDataSet extends DataSet {
 	private final String name;
 	private int age;

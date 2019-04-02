@@ -1,52 +1,63 @@
 package ru.otus.l101.executor;
 
 import ru.otus.l101.dao.DataSet;
+import ru.otus.l101.dao.TableName;
+import ru.otus.l101.dbutils.DbHelper;
 import ru.otus.l101.executor.reflection.ReflectionHelper;
+import ru.otus.l101.executor.reflection.sqlcash.SqlStatementsCash;
 
+import java.math.BigInteger;
 import java.sql.*;
 import java.util.*;
 
 public class DbExecutorImpl implements DbExecutor {
 	private final Connection conn;
-	private DbExecutorHelper executorHelper;
+	private SqlStatementsCash sqlCash;
+	private DbHelper dbHelper;
 
-	public DbExecutorImpl(Connection conn) {
+	public DbExecutorImpl(Connection conn, DbHelper dbHelper) {
 		this.conn = conn;
-		this.executorHelper = new DbExecutorHelper();
+		this.dbHelper = dbHelper;
+		this.sqlCash = new SqlStatementsCash(dbHelper.getDefaultTableName());
 	}
 
 	@Override
-	public <T extends DataSet> void analyzeClass(Class<T> clazz) {
-		executorHelper.analyzeClass(clazz);
+	public <T extends DataSet> void analyzeClass(Class<T> clazz) throws SQLException {
+		sqlCash.analyzeClass(clazz);
 	}
 
 	@Override
 	public <T extends DataSet> void save(T user) throws SQLException {
-		String preparedSql = executorHelper.getSqlToSaveClass(user.getClass());
-		PreparedStatement preparedStatement = conn.prepareStatement(preparedSql);
-		List<String> fieldsNames = executorHelper.getClassStructure(user.getClass());
-		int index = 1;
+		checkTableExist(user);
+		String preparedSql = sqlCash.getSqlToSaveClass(user.getClass());
+		PreparedStatement preparedStatement = conn.prepareStatement(preparedSql, Statement.RETURN_GENERATED_KEYS);
+		List<String> fieldsNames = sqlCash.getClassStructure(user.getClass());
+		int indexInStatement = 1;
 		for (String fieldName : fieldsNames) {
 			Object value = ReflectionHelper.getFieldValue(user, fieldName);
-			preparedStatement.setObject(index, value);
-			index++;
+			preparedStatement.setObject(indexInStatement, value);
+			indexInStatement++;
 		}
 		preparedStatement.executeUpdate();
-		preparedStatement.close();
-		String sqlLastCreated = "SELECT * FROM users ORDER BY id DESC LIMIT 1;";
-		preparedStatement = conn.prepareStatement(sqlLastCreated);// Getting max saved id, i.e. last saved id.
-		ResultSet resultSet = preparedStatement.executeQuery();
+		ResultSet resultSet = preparedStatement.getGeneratedKeys();
 		resultSet.next();
-		Object id = resultSet.getObject("id");
+		long id =  ((BigInteger) resultSet.getObject("GENERATED_KEY")).longValue(); //
 		resultSet.close();
 		preparedStatement.close();
 		ReflectionHelper.setFieldValue(user, "id", id);
 		System.out.println("Save to DB & save created 'id' to object: " + user);
 	}
 
+	private <T extends DataSet> void checkTableExist(T user) throws SQLException{
+		String tableName = null;
+		Class<T> clazz = (Class<T>) user.getClass();
+		if (clazz.isAnnotationPresent(TableName.class)) tableName = clazz.getAnnotation(TableName.class).tableName();
+		if(!dbHelper.tableExist(tableName)) dbHelper.createTableByName(tableName);
+	}
+
 	@Override
 	public <T extends DataSet> T load(long id, Class<T> clazz) throws SQLException {
-		String sqlString = executorHelper.getSqlToLoadClass(clazz);
+		String sqlString = sqlCash.getSqlToLoadClass(clazz);
 		List<String> fieldsNames = ReflectionHelper.getAllFieldsNames(clazz);
 		PreparedStatement preparedStatement = conn.prepareStatement(sqlString);
 		preparedStatement.setObject(1, id);

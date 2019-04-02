@@ -2,64 +2,77 @@ package ru.otus.l101;
 
 import ru.otus.l101.dao.DataSet;
 import ru.otus.l101.dao.UserDataSet;
-import ru.otus.l101.dbutils.DbHelper;
-import ru.otus.l101.executor.DbExecutor;
-import ru.otus.l101.executor.DbExecutorImpl;
+import ru.otus.l101.executor.ORM;
+import ru.otus.l101.executor.OrmException;
 
-import java.lang.reflect.InvocationTargetException;
-import java.sql.*;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.LongStream;
 
 public class MyORM {
-	private static DbExecutor executor;
-	private static final DbHelper dbHelper = new DbHelper();
-	private static List<UserDataSet> userDataSetList;
+	private static ORM orm;
+	private static ArrayList<UserDataSet> userDataSetList;
 
-	public static void main(String[] args) throws SQLException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+	public static void main(String[] args) {
+		orm = new ORM();
 		initDB();
-		loadClassStructure();
-		saveUsers();
-		loadUsers();
+		preLoadClassStructure();
+		createAndPushUsersToOrm();
+		loadUsersById();
 		printUserDataSetList();
 		clearDB();
 	}
 
-	private static void loadClassStructure() throws SQLException {
-		executor.analyzeClass(UserDataSet.class);
-		executor.analyzeClass(DataSet.class);
+	private static void clearDB() {
+		try {
+			orm.clearDB();
+		} catch (OrmException e) {
+			e.printStackTrace();
+		}
 	}
 
-	private static void initDB() throws SQLException {
-		executor = new DbExecutorImpl(dbHelper.getConnection());
-		dbHelper.createUsersTable();
-	}
-
-	private static void saveUsers() {
-		final Random rnd = new Random();
-		Arrays.asList("Andrey", "Sergey", "Maksim", "Ilya", "Fedor", "Dmitriy").forEach(x -> {
-			try {
-				executor.save(new UserDataSet(x, rnd.nextInt(99)));
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		});
-	}
-
-	private static void loadUsers() throws InvocationTargetException, NoSuchMethodException, InstantiationException, SQLException, IllegalAccessException {
-		userDataSetList = new ArrayList<>();
-		for (long id = 1L; id < 7; id++) {
-			userDataSetList.add(executor.load(id, UserDataSet.class));
+	private static void initDB() {
+		try {
+			orm.initDB();
+		} catch (OrmException e) {
+			e.printStackTrace();
 		}
 	}
 
 	private static void printUserDataSetList() {
-		for (UserDataSet user : userDataSetList) {
-			System.out.println(user);
+		userDataSetList.forEach(System.out::println);
+	}
+
+	private static void loadUsersById() {
+		userDataSetList = LongStream.rangeClosed(1L, 6L).mapToObj((x) -> {
+			UserDataSet result = null;
+			try {
+				result = orm.loadUsersById(x, UserDataSet.class);
+			} catch (OrmException e) {
+				e.printStackTrace();
+			}
+			return result;
+		}).collect(Collectors.toCollection(ArrayList::new));
+	}
+
+	private static void createAndPushUsersToOrm() {
+		final Random rnd = new Random();
+		List<String> names= Arrays.asList("Andrey", "Sergey", "Maksim", "Ilya", "Fedor", "Dmitriy");
+		for (String name: names) {
+			try {
+				orm.saveUser(new UserDataSet(name, rnd.nextInt(99)));
+			} catch (OrmException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
-	private static void clearDB() throws SQLException {
-		dbHelper.dropUsersTable();
-		dbHelper.closeConnection();
+	private static void preLoadClassStructure() {
+		try {
+			orm.loadClassStructure(UserDataSet.class);
+			orm.loadClassStructure(DataSet.class);
+		} catch (OrmException e) {
+			e.getMessage();
+		}
 	}
 }

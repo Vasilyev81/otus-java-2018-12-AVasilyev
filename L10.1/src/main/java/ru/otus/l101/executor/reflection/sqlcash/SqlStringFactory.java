@@ -1,10 +1,11 @@
-package ru.otus.l101.executor;
+package ru.otus.l101.executor.reflection.sqlcash;
 
 import ru.otus.l101.dao.DataSet;
 import ru.otus.l101.dao.TableName;
 import ru.otus.l101.executor.reflection.ReflectionHelper;
 
 import java.lang.reflect.Field;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,30 +14,19 @@ import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.joining;
 
-public class DbExecutorHelper {
-	private Map<Class, List<String>> classesStructure = new HashMap<>();
-	private Map<Class, String> sqlToSaveClass;
-	private Map<Class, String> sqlToLoadClass;
+class SqlStringFactory {
+	private final String DEFAULT_TABLE;
+	private Map<Class, List<String>> classesStructure;
 
-	DbExecutorHelper() {
-		this.sqlToSaveClass = new HashMap<>();
-		this.sqlToLoadClass = new HashMap<>();
+	public SqlStringFactory(String tableName) {
+		this.DEFAULT_TABLE = tableName;
+		this.classesStructure = new HashMap<>();
 	}
 
-	<T extends DataSet> String getSqlToLoadClass(Class<T> clazz) {
-		String result = sqlToLoadClass.get(clazz);
-		if (result == null) {
-			result = createSqlToLoad(clazz);
-			sqlToLoadClass.put(clazz, result);
-		}
-		return result;
-	}
-
-	<T extends DataSet> void createSqlForSave(Class<T> clazz) {
+	<T extends DataSet> String createSqlForSave(Class<T> clazz) throws SQLException {
 		String tableName = null;
 		if (clazz.isAnnotationPresent(TableName.class)) tableName = clazz.getAnnotation(TableName.class).tableName();
-		String defaultTableName = "users";
-		if(tableName == null) tableName = defaultTableName;
+		if(tableName == null) tableName = DEFAULT_TABLE;
 		List<String> fieldsNames = classesStructure.get(clazz);
 		String allFieldsNames = String.join(", ", fieldsNames);
 		String valuePlaceHolders = Stream.generate(() -> "?").limit(fieldsNames.size()).collect(Collectors.joining(", "));
@@ -50,7 +40,7 @@ public class DbExecutorHelper {
 				.append("(")
 				.append(valuePlaceHolders)
 				.append(");");
-		sqlToSaveClass.put(clazz, sqlForSave.toString());
+		return sqlForSave.toString();
 	}
 
 	<T extends DataSet> String createSqlToLoad(Class<T> clazz) {
@@ -79,20 +69,16 @@ public class DbExecutorHelper {
 		classesStructure.put(clazz, declaredFields);
 	}
 
-	String getSqlToSaveClass(Class<? extends DataSet> clazz) {
-		if (sqlToSaveClass.get(clazz) == null) analyzeClass(clazz);
-		return sqlToSaveClass.get(clazz);
-	}
-
-	List<String> getClassStructure(Class<? extends DataSet> clazz) {
-		return classesStructure.get(clazz);
-	}
-
-	<T extends DataSet> void analyzeClass(Class<T> clazz) {
+	<T extends DataSet> String analyzeClass(Class<T> clazz) throws SQLException {
 		List<String> declaredFields = Stream.of(clazz.getDeclaredFields()).map(Field::getName).collect(Collectors.toList());
 		addToClassesStructures(clazz, declaredFields);
 		Class superClazz = clazz.getSuperclass();
 		if (superClazz != Object.class) analyzeClass(superClazz);
-		createSqlForSave(clazz);
+		String sqlString = createSqlForSave(clazz);
+		return sqlString;
+	}
+
+	List<String> getClassStructure(Class<? extends DataSet> clazz) {
+		return classesStructure.get(clazz);
 	}
 }
