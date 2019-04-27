@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Save User</title>
+</head>
+<body>
+<div>
+    <img src="dao.jpg" alt="saveusers.png">
+    <br>
+</div>
+<div>
+    <h4>Add user</h4>
+    <form name="addForm">
+        <table border="0" cellspacing="2" cellpadding="1">
+            <tr>
+                <td>User name:</td>
+                <td><input name="name" size="12" type="text" id="t1"  value="" maxlength="25"></td>
+            </tr>
+            <tr>
+                <td>Phone:</td>
+                <td><input name="phone" size="12" type="text" id="t3" value="" maxlength="25"></td>
+            <tr>
+                <td>Address:</td>
+                <td><input name="address" size="12" type="text" id="t4" value="" maxlength="25"></td>
+            <tr>
+                <td>Company:</td>
+                <td><input name="company" size="12" type="text" id="t5" value="" maxlength="25"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Save"
+                formaction="/admin_page/saveuser" formmethod="post"
+                /></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div>
+    <h4><a href="/admin_page">Admin page</a></h4>
+</div>
+</body>
+</html>
