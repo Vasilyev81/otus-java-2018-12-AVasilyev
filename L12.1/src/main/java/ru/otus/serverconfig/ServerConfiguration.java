@@ -37,10 +37,10 @@ public class ServerConfiguration {
 		ResourceHandler resourceHandler = new ResourceHandler();
 		resourceHandler.setBaseResource(Resource.newClassPathResource(PUBLIC_HTML));
 
-		HashLoginService loginService = new HashLoginService( "loginService", LOGIN_PROPERTIES);
+		HashLoginService loginService = new HashLoginService("loginService", LOGIN_PROPERTIES);
 
 		UserStore userStore = new UserStore();
-		userStore.addUser("admin", Credential.getCredential("password"),new String[]{"admin"});
+		userStore.addUser("admin", Credential.getCredential("password"), new String[]{"admin"});
 		loginService.setUserStore(userStore);
 		server.addBean(loginService);
 		SessionHandler sessionHandler = new SessionHandler();
@@ -75,7 +75,7 @@ public class ServerConfiguration {
 		context.addServlet(new ServletHolder(new TimeServlet()), "/time");
 		context.addServlet(new ServletHolder(new AdminPageServlet()), "/admin_page");
 		context.addServlet(new ServletHolder(new SaveUserServlet(dbService)), "/admin_page/saveuser");
-		context.addServlet(new ServletHolder(new FindUserServlet(dbService)), "/admin_page/finduser"); //TODO: Servlet and html-page are not created
+		context.addServlet(new ServletHolder(new FindUserServlet(dbService)), "/admin_page/finduser");
 		context.addServlet(new ServletHolder(new ListOfUsersServlet(dbService)), "/admin_page/listofusers");
 
 		securityHandler.setHandler(context);

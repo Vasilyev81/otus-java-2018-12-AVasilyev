@@ -1,4 +1,4 @@
-package ru.otus;
+package ru.otus.dao;
 
 import ru.otus.dao.DBService;
 import ru.otus.dao.DBServiceImpl;
@@ -15,10 +15,10 @@ import java.util.List;
 //public class DbMain {
 //    public static void main(String[] args) {
 
-public class DaoAccess {
+public class DBPreparation {
 	public DBService dbService;
 
-	public DaoAccess() {
+	public DBPreparation() {
 		dbService = new DBServiceImpl();
 		initiation();
 	}
@@ -83,7 +83,5 @@ public class DaoAccess {
 		for (UserDataSet userDataSet : dataSets) {
 			System.out.println("User: " + userDataSet);
 		}
-
-		//dbService.shutdown();
 	}
 }

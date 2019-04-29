@@ -30,8 +30,6 @@ public class DBServiceImpl implements DBService {
 		configuration.setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/jetty_db");
 		configuration.setProperty("hibernate.connection.username", "root");
 		configuration.setProperty("hibernate.connection.password", "e4rt56yhu8");
-		//configuration.setProperty("hibernate.connection.username", "jetty_admin");
-		//configuration.setProperty("hibernate.connection.password", "password");
 		configuration.setProperty("hibernate.connection.pool_size", "10");
 
 		configuration.setProperty("hibernate.show_sql", "false");

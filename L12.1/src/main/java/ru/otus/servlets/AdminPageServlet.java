@@ -14,13 +14,13 @@ public class AdminPageServlet extends HttpServlet {
 	private final static String HTML_PAGE = "admin_page.html";
 	private static TemplateProcessor processor;
 
-	public AdminPageServlet() throws IOException{
+	public AdminPageServlet() throws IOException {
 		processor = new TemplateProcessor(HTML_DIR);
 	}
 
-	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.setContentType("text/html; charset=utf-8");
-		resp.getWriter().println(processor.getPage(HTML_PAGE, Collections.emptyMap()));
-		resp.setStatus(200);
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html; charset=utf-8");
+		response.getWriter().println(processor.getPage(HTML_PAGE, Collections.emptyMap()));
+		response.setStatus(200);
 	}
 }
