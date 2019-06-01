@@ -16,6 +16,7 @@ import org.eclipse.jetty.util.resource.Resource;
 import org.eclipse.jetty.util.security.Constraint;
 import org.eclipse.jetty.util.security.Credential;
 import ru.otus.dao.DBService;
+import ru.otus.processor.TemplateProcessor;
 import ru.otus.servlets.*;
 
 import java.util.ArrayList;
@@ -53,18 +54,18 @@ public class ServerConfiguration {
 		constraint.setAuthenticate(true);
 		constraint.setRoles(new String[]{"admin"});
 
-		ConstraintMapping constraintMapping = new ConstraintMapping();
-		constraintMapping.setPathSpec("/admin_page/");
-		constraintMapping.setConstraint(constraint);
+		ConstraintMapping adminPath = new ConstraintMapping();
+		adminPath.setPathSpec("/admin_page/");
+		adminPath.setConstraint(constraint);
 
-		ConstraintMapping constraintMapping1 = new ConstraintMapping();
-		constraintMapping1.setPathSpec("/admin_page/*");
-		constraintMapping1.setConstraint(constraint);
+		ConstraintMapping pathsBelowAdmin = new ConstraintMapping();
+		pathsBelowAdmin.setPathSpec("/admin_page/*");
+		pathsBelowAdmin.setConstraint(constraint);
 		List<ConstraintMapping> mappings = new ArrayList<>();
-		mappings.add(constraintMapping);
-		mappings.add(constraintMapping1);
+		mappings.add(adminPath);
+		mappings.add(pathsBelowAdmin);
 
-		FormAuthenticator formAuthenticator = new FormAuthenticator("/login.html", "/login-fail.html", false);
+		FormAuthenticator formAuthenticator = new FormAuthenticator("/login.html", "/login_fail.html", false);
 
 		securityHandler.setConstraintMappings(mappings);
 		securityHandler.setAuthenticator(formAuthenticator);

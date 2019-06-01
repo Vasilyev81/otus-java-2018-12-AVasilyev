@@ -1,5 +1,6 @@
 package ru.otus.servlets;
 
+import org.hibernate.ObjectNotFoundException;
 import ru.otus.dao.DBService;
 import ru.otus.datasets.UserDataSet;
 import ru.otus.processor.TemplateProcessor;
@@ -34,7 +35,13 @@ public class FindUserServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		var id = Long.parseLong(request.getParameterValues("id")[0]);
-		UserDataSet userDataSet = dbService.read(id);
+		UserDataSet userDataSet = null;
+		try {
+			userDataSet = dbService.read(id);
+		} catch (ObjectNotFoundException ex) {
+			System.err.println("Exception while retrieving user with id " + id + " from database, " + ex.getMessage());
+		}
+
 		if (userDataSet != null) {
 			Map<String, Object> root = new HashMap<>();
 			root.put("user", userDataSet);

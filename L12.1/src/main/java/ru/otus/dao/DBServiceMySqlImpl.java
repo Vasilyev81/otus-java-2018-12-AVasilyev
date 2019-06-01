@@ -13,10 +13,10 @@ import org.hibernate.service.ServiceRegistry;
 import java.util.List;
 import java.util.function.Function;
 
-public class DBServiceImpl implements DBService {
+public class DBServiceMySqlImpl implements DBService {
 	private final SessionFactory sessionFactory;
 
-	public DBServiceImpl() {
+	public DBServiceMySqlImpl() {
 		Configuration configuration = new Configuration();
 		configuration.addAnnotatedClass(DataSet.class);
 		configuration.addAnnotatedClass(UserDataSet.class);
@@ -40,7 +40,7 @@ public class DBServiceImpl implements DBService {
 		sessionFactory = createSessionFactory(configuration);
 	}
 
-	public DBServiceImpl(Configuration configuration) {
+	public DBServiceMySqlImpl(Configuration configuration) {
 		sessionFactory = createSessionFactory(configuration);
 	}
 

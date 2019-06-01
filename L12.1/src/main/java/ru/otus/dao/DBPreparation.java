@@ -1,7 +1,5 @@
 package ru.otus.dao;
 
-import ru.otus.dao.DBService;
-import ru.otus.dao.DBServiceImpl;
 import ru.otus.datasets.AddressDataSet;
 import ru.otus.datasets.CompanyDataSet;
 import ru.otus.datasets.PhoneDataSet;
@@ -16,10 +14,10 @@ import java.util.List;
 //    public static void main(String[] args) {
 
 public class DBPreparation {
-	public DBService dbService;
+	private DBService dbService;
 
 	public DBPreparation() {
-		dbService = new DBServiceImpl();
+		dbService = new DBServiceH2Impl();
 		initiation();
 	}
 

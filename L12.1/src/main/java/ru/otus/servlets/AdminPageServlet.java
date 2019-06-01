@@ -12,7 +12,7 @@ import java.util.Collections;
 public class AdminPageServlet extends HttpServlet {
 	private final static String HTML_DIR = "/admin_page/";
 	private final static String HTML_PAGE = "admin_page.html";
-	private static TemplateProcessor processor;
+	private final TemplateProcessor processor;
 
 	public AdminPageServlet() throws IOException {
 		processor = new TemplateProcessor(HTML_DIR);

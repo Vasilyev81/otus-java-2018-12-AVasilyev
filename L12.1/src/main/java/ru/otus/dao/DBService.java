@@ -1,5 +1,6 @@
 package ru.otus.dao;
 
+import org.hibernate.ObjectNotFoundException;
 import ru.otus.datasets.DataSet;
 import ru.otus.datasets.UserDataSet;
 
@@ -13,7 +14,7 @@ public interface DBService {
 
 	<T extends DataSet> void save(T dataSet);
 
-	UserDataSet read(long id);
+	UserDataSet read (long id) throws ObjectNotFoundException;
 
 	UserDataSet readByName(String name);
 
