@@ -1,0 +1,12 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="templateProcessor" class="ru.otus.servlets.TemplateProcessor">
+        <constructor-arg value="/tml"/>
+    </bean>
+
+    <bean id="dbService" class="ru.otus.dao.DBServiceH2Impl" factory-method="getInstance"/>
+
+</beans>
