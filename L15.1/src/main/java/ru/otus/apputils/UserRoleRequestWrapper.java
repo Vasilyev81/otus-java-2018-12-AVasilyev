@@ -1,7 +1,6 @@
 package ru.otus.apputils;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
+import javax.servlet.http.*;
 import java.security.Principal;
 
 public class UserRoleRequestWrapper extends HttpServletRequestWrapper {
@@ -29,11 +28,6 @@ public class UserRoleRequestWrapper extends HttpServletRequestWrapper {
 		if (this.user == null) {
 			return realRequest.getUserPrincipal();
 		}
-		return new Principal() {
-			@Override
-			public String getName() {
-				return user;
-			}
-		};
+		return () -> user;
 	}
 }

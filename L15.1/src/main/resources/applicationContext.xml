@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+    <context:annotation-config/>
+
+    <bean id="templateProcessor" class="ru.otus.servlets.TemplateProcessor">
+        <constructor-arg value="/tml/"/>
+    </bean>
+
+    <bean id="dbService" class="ru.otus.dao.DBServiceH2Impl"/>
+
+    <bean id="dbPreparation" class="ru.otus.dao.DBPreparation"/>
+    <bean id="timerServlet" class="ru.otus.servlets.TimeServlet"/>
+    <bean id="adminPageServlet" class="ru.otus.servlets.AdminPageServlet"/>
+    <bean id="logonErrorServlet" class="ru.otus.servlets.LogonErrorServlet"/>
+    <bean id="logonServlet" class="ru.otus.servlets.LogonServlet"/>
+    <bean id="logoutServlet" class="ru.otus.servlets.LogoutServlet"/>
+    <bean id="saveUserServlet" class="ru.otus.servlets.SaveUserServlet"/>
+    <bean id="findUserServlet" class="ru.otus.servlets.FindUserServlet"/>
+    <bean id="listOfUsersServlet" class="ru.otus.servlets.ListOfUsersServlet"/>
+    <bean id="securityFilter" class="ru.otus.servlets.SecurityFilter"/>
+
+</beans>

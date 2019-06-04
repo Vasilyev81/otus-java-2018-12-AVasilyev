@@ -1,20 +1,17 @@
 package ru.otus.dao;
 
-import ru.otus.apputils.SpringContextProvider;
+import org.springframework.beans.factory.annotation.Autowired;
 import ru.otus.datasets.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class DBPreparation {
 
-	public static void fillIn() {
 
-		DBService dbService = (DBService) SpringContextProvider.getContext().getBean("dbService");
-		//DBService dbService = DBServiceH2Impl.getInstance();
 
+
+	@Autowired
+	public  DBPreparation(DBService dbService) {
 		UserDataSet user1 = new UserDataSet("tully", Collections.singletonList(new AddressDataSet("Mira")),
 				new PhoneDataSet("+1 234 567 8018"), new PhoneDataSet("+7 987 645 4545"));
 		List<AddressDataSet> addresses = new ArrayList<>();

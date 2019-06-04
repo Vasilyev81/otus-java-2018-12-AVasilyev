@@ -1,27 +1,31 @@
 package ru.otus.servlets;
 
-import ru.otus.apputils.SpringContextProvider;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import ru.otus.dao.DBService;
-import ru.otus.dao.DBServiceH2Impl;
 import ru.otus.datasets.UserDataSet;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.*;
+import javax.servlet.http.*;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ListOfUsersServlet extends HttpServlet {
 	private final static String TEMPLATE_PAGE = "users.ftl";
-	private final TemplateProcessor templateProcessor;
-	private final DBService dbService;
 
-	public ListOfUsersServlet(){
-		templateProcessor = (TemplateProcessor) SpringContextProvider.getContext().getBean("templateProcessor");
-		dbService = (DBService) SpringContextProvider.getContext().getBean("dbService");
+	@Autowired
+	private DBService dbService;
+	@Autowired
+	private TemplateProcessor templateProcessor;
+
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		super.init(config);
+		SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, config.getServletContext());
 	}
+
+
+	public ListOfUsersServlet(){ }
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		List<UserDataSet> userDataSetList = dbService.readAll();

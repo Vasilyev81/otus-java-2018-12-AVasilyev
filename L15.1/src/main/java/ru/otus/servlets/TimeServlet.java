@@ -1,26 +1,29 @@
 package ru.otus.servlets;
 
-import ru.otus.apputils.SpringContextProvider;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.*;
+import javax.servlet.http.*;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.text.*;
+import java.util.*;
 
 public class TimeServlet extends HttpServlet {
 	private static final String REFRESH_VARIABLE_NAME = "refreshPeriod";
 	private static final String TIME_VARIABLE_NAME = "time";
 	private static final String TIMER_PAGE_TEMPLATE = "time.html";
 	private static final int PERIOD_MS = 1000;
-	private final TemplateProcessor templateProcessor;
 
-	public TimeServlet() {
-		templateProcessor = (TemplateProcessor) SpringContextProvider.getContext().getBean("templateProcessor");
+	@Autowired
+	private TemplateProcessor templateProcessor;
+
+	public TimeServlet() { }
+
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		super.init(config);
+		SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, config.getServletContext());
 	}
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {

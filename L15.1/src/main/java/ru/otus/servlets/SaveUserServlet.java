@@ -1,26 +1,30 @@
 package ru.otus.servlets;
 
-import ru.otus.apputils.SpringContextProvider;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import ru.otus.dao.DBService;
-import ru.otus.dao.DBServiceH2Impl;
 import ru.otus.datasets.*;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.*;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.Collections;
 
 public class SaveUserServlet extends HttpServlet {
 	private final static String SAVEUSER_HTML = "saveuser.html";
 	private final static String CONGRATULATION_HTML = "congrat_page.html";
-	private final TemplateProcessor templateProcessor;
-	private final DBService dbService;
+	@Autowired
+	private DBService dbService;
+	@Autowired
+	private TemplateProcessor templateProcessor;
 
-	public SaveUserServlet(){
-		templateProcessor = (TemplateProcessor) SpringContextProvider.getContext().getBean("templateProcessor");
-		dbService = (DBService) SpringContextProvider.getContext().getBean("dbService");
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		super.init(config);
+		SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, config.getServletContext());
 	}
+
+	public SaveUserServlet(){ }
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		response.setContentType("text/html; charset=utf-8");

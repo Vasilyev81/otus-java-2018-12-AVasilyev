@@ -1,26 +1,16 @@
 package ru.otus.datasets;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 
-/**
- * Created by tully.
- */
+
 @NoArgsConstructor
 @MappedSuperclass
 public class DataSet {
-
 	@Getter
 	@Setter
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-
-
 }

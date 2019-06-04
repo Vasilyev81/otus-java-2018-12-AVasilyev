@@ -34,7 +34,6 @@ public class SecurityFilter implements Filter {
 		if (SecurityUtils.isSecurityPage(request)) {
 			if (loginedUser == null) {
 				String requestUri = request.getRequestURI();
-				// Сохранить текущую страницу для перенаправления (redirect) после успешного входа в систему.
 				int redirectId = AppUtils.storeRedirectURL(requestUri);
 
 				response.sendRedirect(wrapRequest.getContextPath() + "/logon?redirectId=" + redirectId);

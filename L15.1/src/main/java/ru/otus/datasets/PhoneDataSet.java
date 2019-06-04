@@ -1,24 +1,18 @@
 package ru.otus.datasets;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
-/**
- * Created by tully.
- */
+
 @NoArgsConstructor
 @Entity
 @Table(name = "phone")
 public class PhoneDataSet extends DataSet {
-
 	@Getter
 	@Setter
 	@Column(name = "number")
 	private String number;
-
 	@Getter
 	@Setter
 	@ManyToOne(fetch = FetchType.EAGER)

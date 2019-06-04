@@ -1,8 +1,7 @@
 package ru.otus.apputils;
 
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class AppUtils {
 	private static int REDIRECT_ID = 0;

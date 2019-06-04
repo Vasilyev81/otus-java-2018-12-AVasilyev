@@ -10,24 +10,15 @@ import java.util.List;
 import java.util.function.Function;
 
 public class DBServiceH2Impl implements DBService {
-	private static DBService h2Instance;
 	private final SessionFactory sessionFactory;
 
-	public static DBService getInstance(){
-		if (h2Instance == null) {
-			h2Instance = new DBServiceH2Impl();
-		}
-		return h2Instance;
-	}
-
-	private DBServiceH2Impl() {
+	public DBServiceH2Impl() {
 		Configuration configuration = new Configuration();
 		configuration.addAnnotatedClass(DataSet.class);
 		configuration.addAnnotatedClass(UserDataSet.class);
 		configuration.addAnnotatedClass(AddressDataSet.class);
 		configuration.addAnnotatedClass(CompanyDataSet.class);
 		configuration.addAnnotatedClass(PhoneDataSet.class);
-
 
 		configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
 		configuration.setProperty("hibernate.connection.driver_class", "org.h2.Driver");

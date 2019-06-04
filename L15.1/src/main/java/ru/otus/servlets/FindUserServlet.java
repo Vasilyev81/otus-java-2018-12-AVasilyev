@@ -1,31 +1,33 @@
 package ru.otus.servlets;
 
 import org.hibernate.ObjectNotFoundException;
-import ru.otus.apputils.SpringContextProvider;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import ru.otus.dao.DBService;
-import ru.otus.dao.DBServiceH2Impl;
 import ru.otus.datasets.*;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.*;
+import javax.servlet.http.*;
 import java.io.IOException;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class FindUserServlet extends HttpServlet {
 	private final static String FINDUSER_HTML = "finduser.html";
 	private final static String FAIL_HTML = "failuser.html";
 	private final static String FOUNDEDUSER_TEMPL = "foundeduser.ftl";
-	private final DBService dbService;
-	private final TemplateProcessor templateProcessor;
 
-	public FindUserServlet(){
-		templateProcessor = (TemplateProcessor) SpringContextProvider.getContext().getBean("templateProcessor");
-		dbService = (DBService) SpringContextProvider.getContext().getBean("dbService");
+	@Autowired
+	private DBService dbService;
+	@Autowired
+	private TemplateProcessor templateProcessor;
 
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		super.init(config);
+		SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, config.getServletContext());
 	}
+
+	public FindUserServlet(){ }
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		response.setContentType("text/html; charset=utf-8");

@@ -1,42 +1,28 @@
 package ru.otus.datasets;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
 public class UserDataSet extends DataSet {
-
 	@Getter
 	@Setter
 	@Column(name = "name")
 	private String name;
-
-	/**
-	 * OneToMany bidirectional example
-	 */
 	@Getter
 	@Setter
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<PhoneDataSet> phones = new ArrayList<>();
-
-	/**
-	 * OneToMany bidirectional example
-	 */
 	@Getter
 	@Setter
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "user_id", nullable = false)
 	private List<AddressDataSet> addresses = new ArrayList<>();
-
 	@Getter
 	@Setter
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
@@ -55,7 +41,6 @@ public class UserDataSet extends DataSet {
 		this.setPhones(userPhones);
 		userPhones.forEach(phone -> phone.setUser(this));
 	}
-
 
 	@Override
 	public String toString() {

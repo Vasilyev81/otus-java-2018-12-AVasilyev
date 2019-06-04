@@ -1,27 +1,26 @@
 package ru.otus.servlets;
 
-import ru.otus.apputils.Account;
-import ru.otus.apputils.AppUtils;
-import ru.otus.apputils.SpringContextProvider;
-import ru.otus.apputils.SecurityDAO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
+import ru.otus.apputils.*;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.*;
+import javax.servlet.http.*;
 import java.io.IOException;
-import java.util.Collections;
+import java.util.*;
 
 public class LogonServlet extends HttpServlet {
 	private final int ALIVE_TIME = (int) (60 * 1.5);
 	private final String HTML_PAGE = "logon.html";
+	@Autowired
 	private TemplateProcessor templateProcessor;
 
-	public LogonServlet() {
-		templateProcessor = (TemplateProcessor) SpringContextProvider.getContext().getBean("templateProcessor");
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		super.init(config);
+		SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, config.getServletContext());
 	}
+	public LogonServlet() { }
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -50,12 +49,9 @@ public class LogonServlet extends HttpServlet {
 		try {
 			redirectId = Integer.parseInt(request.getParameter("redirectId"));
 		} catch (Exception e) {
+			System.err.println("Error during parsing redirect ID!");
 		}
 		String requestUri = AppUtils.getRedirectUrl(redirectId);
-		if (requestUri != null) {
-			response.sendRedirect(requestUri);
-		} else {
-			response.sendRedirect(request.getContextPath() + "/admin_page");
-		}
+		response.sendRedirect(Objects.requireNonNullElseGet(requestUri, () -> request.getContextPath() + "/admin_page"));
 	}
 }
