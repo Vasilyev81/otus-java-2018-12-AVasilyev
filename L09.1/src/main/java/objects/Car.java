@@ -2,16 +2,18 @@ package objects;
 
 public class Car {
 	private final String color;
-	private int doors;
-	private int drive;
+	private final int doors;
+	private final int drive;
 	private final int maxSpeed;
 	private final double engineVolume;
+	private final SerialNumber[] serialNumbers;
 
-	public Car() {
-		this.color = "black";
-		this.doors = 4;
-		this.drive = 4;
-		this.maxSpeed = 165;
-		this.engineVolume = 2.7;
+	public Car(String color, int doors, int drive, int maxSpeed, double engineVolume, SerialNumber[] serialNumbers) {
+		this.color = color;
+		this.doors = doors;
+		this.drive = drive;
+		this.maxSpeed = maxSpeed;
+		this.engineVolume = engineVolume;
+		this.serialNumbers = serialNumbers;
 	}
 }
