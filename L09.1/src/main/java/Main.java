@@ -7,8 +7,8 @@ import java.util.*;
 
 public class Main {
 	private static Logger logger = LoggerFactory.getLogger(Main.class);
+	private static Gson gson = new Gson();
 	public static void main(String[] args) throws Exception {
-		Gson gson = new Gson();
 
 		int[] arrOfInt = {1, 2, 3, 4, 5, 6, 7, 8, 9};
 
@@ -29,24 +29,16 @@ public class Main {
 		Car car = new Car("black", 4, 4, 165, 2.7, new Car.SerialNumber("body", 938478273),
 				new Car.SerialNumber("engine", 836480530));
 
-		List singletonList = Collections.singletonList(1);
+		testPrint(arrOfInt);
+		testPrint(arrOfString);
+		testPrint(stringList);
+		testPrint(stringIntegerMap);
+		testPrint(car);
+		testPrint(Collections.singletonList(1));
+	}
 
-		logger.info(ObjectToJson.toJson(arrOfInt));
-		logger.info(gson.toJson(arrOfInt));
-
-		logger.info(ObjectToJson.toJson(arrOfString));
-		logger.info(gson.toJson(arrOfString));
-
-		logger.info(ObjectToJson.toJson(stringList));
-		logger.info(gson.toJson(stringList));
-
-		logger.info(ObjectToJson.toJson(stringIntegerMap));
-		logger.info(gson.toJson(stringIntegerMap));
-
-		logger.info(ObjectToJson.toJson(car));
-		logger.info(gson.toJson(car));
-
-		logger.info(ObjectToJson.toJson(singletonList));
-		logger.info(gson.toJson(singletonList));
+	private static void testPrint(Object obj) throws Exception {
+		logger.info(ObjectToJson.toJson(obj));
+		logger.info(gson.toJson(obj));
 	}
 }
