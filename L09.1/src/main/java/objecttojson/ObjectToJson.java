@@ -112,30 +112,30 @@ public class ObjectToJson {
 	}
 
 	private static String printArray(Object object) throws Exception {
-		String typeName = object.getClass().getTypeName();
+		Class<?> clazz = object.getClass().getComponentType();
 		StringBuilder builder = new StringBuilder();
-		if (typeName.contains("boolean")) {
+		if (clazz.getSimpleName().equals("boolean")) {
 			boolean[] booleans = (boolean[]) object;
 			builder.append(printArray(Helper.wrapArray(booleans)));
-		} else if (typeName.contains("byte")) {
+		} else if (clazz.getSimpleName().equals("byte")) {
 			byte[] bytes = (byte[]) object;
 			builder.append(printArray(Helper.wrapArray(bytes)));
-		} else if (typeName.contains("short")) {
+		} else if (clazz.getSimpleName().equals("short")) {
 			short[] shorts = (short[]) object;
 			builder.append(printArray(Helper.wrapArray(shorts)));
-		} else if (typeName.contains("int")) {
+		} else if (clazz.getSimpleName().equals("int")) {
 			int[] ints = (int[]) object;
 			builder.append(printArray(Helper.wrapArray(ints)));
-		} else if (typeName.contains("long")) {
+		} else if (clazz.getSimpleName().equals("long")) {
 			long[] longs = (long[]) object;
 			builder.append(printArray(Helper.wrapArray(longs)));
-		} else if (typeName.contains("float")) {
+		} else if (clazz.getSimpleName().equals("float")) {
 			float[] floats = (float[]) object;
 			builder.append(printArray(Helper.wrapArray(floats)));
-		} else if (typeName.contains("double")) {
+		} else if (clazz.getSimpleName().equals("double")) {
 			double[] doubles = (double[]) object;
 			builder.append(printArray(Helper.wrapArray(doubles)));
-		} else if (typeName.contains("String")) {
+		} else if (clazz.getSimpleName().equals("String")) {
 			String[] strings = (String[]) object;
 			builder.append(printArray(strings));
 		} else {
