@@ -10,7 +10,7 @@ public class Main {
 	public static void main(String[] args) throws Exception {
 		Gson gson = new Gson();
 
-		Integer[] arrOfInt = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+		int[] arrOfInt = {1, 2, 3, 4, 5, 6, 7, 8, 9};
 
 		String[] arrOfString = {"jgilibln", "hkvetryct", "juytyu5rc", "tureuuih;b", "rtcyutuygkl"};
 
@@ -26,8 +26,10 @@ public class Main {
 		stringIntegerMap.put("oijosro;fnifref", 409584987);
 		stringIntegerMap.put("uyyhcmn[wepejr", 429879870);
 
-		Car car = new Car("black", 4, 4, 165, 2.7, new SerialNumber[]{new SerialNumber("body", 938478273),
-				new SerialNumber("engine", 836480530)});
+		Car car = new Car("black", 4, 4, 165, 2.7, new Car.SerialNumber("body", 938478273),
+				new Car.SerialNumber("engine", 836480530));
+
+		List singletonList = Collections.singletonList(1);
 
 		logger.info(ObjectToJson.toJson(arrOfInt));
 		logger.info(gson.toJson(arrOfInt));
@@ -44,7 +46,7 @@ public class Main {
 		logger.info(ObjectToJson.toJson(car));
 		logger.info(gson.toJson(car));
 
-		logger.info(ObjectToJson.toJson(new Date().getTime()));
-		logger.info(gson.toJson(new Date().getTime()));
+		logger.info(ObjectToJson.toJson(singletonList));
+		logger.info(gson.toJson(singletonList));
 	}
 }

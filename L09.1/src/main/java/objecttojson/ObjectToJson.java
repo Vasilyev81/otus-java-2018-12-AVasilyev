@@ -11,19 +11,17 @@ public class ObjectToJson {
 
 	public static String toJson(Object obj) throws Exception {
 		if (obj == null) return null;
-		Type type = obj.getClass();
-		if (isString(type)) {
+		if (isString(obj)) {
 			return "\"" + obj.toString() + "\"";
 		}
 		if (isSimpleType(obj.getClass())) {
 			return obj.toString();
 		}
-		if (isArray(type)) {
+		if (isArray(obj)) {
 			return "[" + printArray(obj) + "]";
 		}
-
 		if (obj instanceof List) {
-			return "{" + printList((List) obj) + "}";
+			return "[" + printList((List) obj) + "]";
 		}
 		if (obj instanceof Set) {
 			return "{" + printSet((Set) obj) + "}";
@@ -78,15 +76,12 @@ public class ObjectToJson {
 				clazz.equals(Boolean.class);
 	}
 
-	private static boolean isString(Type type) {
-		if (null == type) return false;
-		String name = type.getTypeName();
-		return name.equals("java.lang.String");
+	private static boolean isString(Object obj) {
+		return obj.getClass().getName().equals("java.lang.String");
 	}
 
-	private static boolean isArray(Type type) {
-		if (null == type) return false;
-		return type.getTypeName().contains("[]");
+	private static boolean isArray(Object obj) {
+		return obj.getClass().isArray();
 	}
 
 	private static String printMap(Map<Object, Object> map) throws Exception {
