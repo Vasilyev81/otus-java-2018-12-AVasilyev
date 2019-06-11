@@ -44,7 +44,7 @@ public class TransactionChoice implements AbstractAction {
 				states = AtmManager.States.FINISH_WORK;
 				break;
 			}
-			default: {
+			default: { //TODO> make while(unsupportedValue) to handle wrong input inside this class, without going back to main flow
 				ui.print("\nYou input unsupported value,\ntry again!");
 				states = AtmManager.States.ACTION_CHOICE;
 			}

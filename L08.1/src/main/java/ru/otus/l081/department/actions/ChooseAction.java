@@ -18,7 +18,8 @@ public class ChooseAction implements AbstractAction {
 				.append("Get balance of one of ATM's -> 2\n")
 				.append("Get balances of ALL ATM's -> 3\n")
 				.append("Reset one of ATM's -> 4\n")
-				.append("Reset All ATM's -> 5\n");
+				.append("Reset All ATM's -> 5\n")
+				.append("Stop department -> 6\n");
 		userInterface.print(sb.toString());
 		return handleUserInput();
 	}
@@ -36,7 +37,7 @@ public class ChooseAction implements AbstractAction {
 				break;
 			}
 			case "3": {
-				result = Department.States.GET_ALL_ATMS_BALANCE;
+				result = Department.States.GET_ALL_ATM_BALANCE;
 				break;
 			}
 			case "4": {
@@ -44,7 +45,10 @@ public class ChooseAction implements AbstractAction {
 				break;
 			}
 			case "5": {
-				result = Department.States.RESET_ALL_ATMS;
+				result = Department.States.RESET_ALL_ATM;
+				break;
+			}case "6": {
+				result = Department.States.STOP;
 				break;
 			}
 			default: {
@@ -55,4 +59,4 @@ public class ChooseAction implements AbstractAction {
 		return result;
 	}
 }
-//WORK_WITH_ATM, GET_ATM_BALANCE, GET_ALL_ATMS_BALANCE, RESET_ATM, RESET_ALL_ATMS
+//WORK_WITH_ATM, GET_ATM_BALANCE, GET_ALL_ATM_BALANCE, RESET_ATM, RESET_ALL_ATM

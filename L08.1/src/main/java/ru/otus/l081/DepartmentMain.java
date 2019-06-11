@@ -1,4 +1,6 @@
-package ru.otus.l081.department;
+package ru.otus.l081;
+
+import ru.otus.l081.department.Department;
 
 public class DepartmentMain {
 	public static void main(String[] args) {
