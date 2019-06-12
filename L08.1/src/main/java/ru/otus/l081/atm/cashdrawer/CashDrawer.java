@@ -1,23 +1,16 @@
 package ru.otus.l081.atm.cashdrawer;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CashDrawer implements Serializable {
-	private static CashDrawer instance;
-	private List<String> currenciesNames;
+	private List currenciesNames;
 	private List<CurrencyCells> storage;
 
-	private CashDrawer() {
+	public CashDrawer() {
 		storage = new ArrayList<>();
 	}
-
-	public static CashDrawer getCashDrawer() {
-		if (instance == null) instance = new CashDrawer();
-		return instance;
-	}
-
 	public List<String> getCurrenciesNamesList() {
 		return currenciesNames;
 	}
@@ -37,7 +30,7 @@ public class CashDrawer implements Serializable {
 
 	public void addBanknotes(String currentCurrency, Integer denomination, Integer numberOfBanknotesToDeposit) {
 		CurrencyCells currencyCells = storage.get(currenciesNames.indexOf(currentCurrency));
-		BanknoteCell cell = currencyCells.getCell(denomination);//
+		BanknoteCell cell = currencyCells.getCell(denomination);
 		Integer currentNumOfBanknotes = cell.getNumberOfBanknotes();
 		cell.setNumberOfBanknotes(currentNumOfBanknotes + numberOfBanknotesToDeposit);
 	}
@@ -46,9 +39,9 @@ public class CashDrawer implements Serializable {
 		return storage.get(currenciesNames.indexOf(currCurrency)).getMinAvailableBanknote();
 	}
 
-	public void setNumberOfBanknotes(String currentCurrency, List saveToCurrencyCells){
-		CurrencyCells currencyCells= storage.get(currenciesNames.indexOf(currentCurrency));
-		for(int i = 0; i < currencyCells.size(); i ++){
+	public void setNumberOfBanknotes(String currentCurrency, List saveToCurrencyCells) {
+		CurrencyCells currencyCells = storage.get(currenciesNames.indexOf(currentCurrency));
+		for (int i = 0; i < currencyCells.size(); i++) {
 			currencyCells.setNumberOfBanknotesByCellIndex(i, (Integer) saveToCurrencyCells.get(i));
 		}
 	}
@@ -59,5 +52,23 @@ public class CashDrawer implements Serializable {
 
 	public void setStorage(List<CurrencyCells> storage) {
 		this.storage = storage;
+	}
+
+	public String getBalance() {
+		List<String> currNames = getCurrenciesNamesList();
+		StringBuilder sb = new StringBuilder();
+		for (String currName : currNames) {
+			sb.append("Currency: ").append(currName).append(", Total balance: ").append(totalSum(currName));
+			List denominations = getDenominationsListByCurrencyName(currName);
+			List numberOfBanknotes = getNumberOfBanknotesListByCurrencyName(currName);
+			for (int i = 0; i < denominations.size(); i++) {
+				sb.append("\n")
+						.append(denominations.get(i))
+						.append(" : ")
+						.append(numberOfBanknotes.get(i));
+			}
+			sb.append("\n");
+		}
+		return sb.toString();
 	}
 }

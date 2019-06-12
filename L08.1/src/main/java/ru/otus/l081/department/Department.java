@@ -1,7 +1,9 @@
 package ru.otus.l081.department;
 
-import ru.otus.l081.atm.AtmManager;
+import ru.otus.l081.atm.Atm;
+import ru.otus.l081.atm.AtmInterface;
 import ru.otus.l081.department.actions.*;
+import ru.otus.l081.department.caretaker.Caretaker;
 import ru.otus.l081.userinterface.AtmUserInterface;
 import ru.otus.l081.userinterface.UserInterface;
 
@@ -9,9 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Department {
-	private int atms;
 	private UserInterface departmentInterface;
-	private List<AtmManager> atmManagers;
+	private List<AtmInterface> atms;
+	private Caretaker caretaker;
 	private States state;
 
 	public enum States {
@@ -24,18 +26,19 @@ public class Department {
 		STOP
 	}
 
-	public Department(int atms) {
-		this.atms = atms;
+	public Department(int atmsNumber) {
 		departmentInterface = new AtmUserInterface();
-		atmManagers = new ArrayList<>();
-		initAtms();
+		this.atms = new ArrayList<>(atmsNumber);
+		caretaker = new Caretaker();
+		initAtms(atmsNumber);
 	}
 
-	private void initAtms() {
-		if (atmManagers == null) atmManagers = new ArrayList<>();
-		for (int i = 0; i < atms; i++) {
-			atmManagers.add(new AtmManager());
-			atmManagers.get(i).init();
+	private void initAtms(int atmsNumber) {
+		if (atms == null) atms = new ArrayList<>(atmsNumber);
+		for (int i = 0; i < atmsNumber; i++) {
+			atms.add(new Atm());
+			atms.get(i).init();
+			caretaker.saveBackup(atms.get(i), i);
 		}
 	}
 
@@ -49,23 +52,23 @@ public class Department {
 					break;
 				}
 				case WORK_WITH_ATM: {
-					state = perform(new WorkWithAtmAction(atmManagers, departmentInterface, atms));
+					state = perform(new WorkWithAtmAction(atms, departmentInterface));
 					break;
 				}
 				case GET_ATM_BALANCE: {
-				state = perform(new AtmBalanceAstion(departmentInterface));
+				state = perform(new AtmBalanceAction(atms, departmentInterface));
 					break;
 				}
 				case GET_ALL_ATM_BALANCE: {
-					state = perform(new AllAtmBalanceAction(departmentInterface));
+					state = perform(new AllAtmBalanceAction(atms, departmentInterface));
 					break;
 				}
 				case RESET_ATM: {
-					state = perform(new ResetAtmBalanceAction(departmentInterface));
+					state = perform(new ResetAtmBalanceAction(atms, departmentInterface, caretaker));
 					break;
 				}
 				case RESET_ALL_ATM: {
-					state = perform(new ResetAllAtmBalanceAction(departmentInterface));
+					state = perform(new ResetAllAtmBalanceAction(departmentInterface, caretaker));
 					break;
 				}
 				case STOP: {

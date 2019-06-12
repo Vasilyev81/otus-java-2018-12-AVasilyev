@@ -3,6 +3,7 @@ package ru.otus.l081.atm;
 import ru.otus.l081.atm.cashdrawer.BanknoteCell;
 import ru.otus.l081.atm.cashdrawer.CashDrawer;
 import ru.otus.l081.atm.cashdrawer.CurrencyCells;
+import ru.otus.l081.atm.transactions.Transaction;
 
 import java.util.*;
 

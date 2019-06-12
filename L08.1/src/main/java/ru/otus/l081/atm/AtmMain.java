@@ -1,7 +1,7 @@
 package ru.otus.l081.atm;
 
-public class ATM {
-	static AtmManager atmManager = new AtmManager();
+public class AtmMain {
+	static Atm atmManager = new Atm();
 
 	public static void main(String[] args) {
 		atmManager.initAndStart();

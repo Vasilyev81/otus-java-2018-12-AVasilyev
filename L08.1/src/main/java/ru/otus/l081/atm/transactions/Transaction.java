@@ -1,4 +1,4 @@
-package ru.otus.l081.atm;
+package ru.otus.l081.atm.transactions;
 
 import ru.otus.l081.atm.cashdrawer.CashDrawer;
 

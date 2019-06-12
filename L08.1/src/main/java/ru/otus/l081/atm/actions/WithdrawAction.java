@@ -1,8 +1,8 @@
 package ru.otus.l081.atm.actions;
 
-import ru.otus.l081.atm.AtmManager;
-import ru.otus.l081.atm.Transaction;
-import ru.otus.l081.atm.TransactionException;
+import ru.otus.l081.atm.Atm;
+import ru.otus.l081.atm.transactions.Transaction;
+import ru.otus.l081.atm.transactions.TransactionException;
 import ru.otus.l081.userinterface.UserInterface;
 
 public class WithdrawAction implements AbstractAction {
@@ -15,7 +15,7 @@ public class WithdrawAction implements AbstractAction {
 	}
 
 	@Override
-	public AtmManager.States execute() {
+	public Atm.States execute() {
 		Integer withdrawValue = handleWithdrawInput();
 		try {
 			String userOutput = transaction.withdraw(withdrawValue);
@@ -23,7 +23,7 @@ public class WithdrawAction implements AbstractAction {
 		} catch (TransactionException e) {
 			e.getMessage();
 		}
-		return AtmManager.States.CURRENCY_BALANCE;
+		return Atm.States.CURRENCY_BALANCE;
 	}
 
 	private Integer handleWithdrawInput() {

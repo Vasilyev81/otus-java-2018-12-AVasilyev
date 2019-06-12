@@ -1,6 +1,6 @@
 package ru.otus.l081.atm.actions;
 
-import ru.otus.l081.atm.AtmManager;
+import ru.otus.l081.atm.Atm;
 import ru.otus.l081.atm.Utils;
 import ru.otus.l081.atm.cashdrawer.CashDrawer;
 import ru.otus.l081.userinterface.UserInterface;
@@ -18,9 +18,9 @@ public class InitAction implements AbstractAction {
 	}
 
 	@Override
-	public AtmManager.States execute() {
+	public Atm.States execute() {
 		utils.initCashDrawer(cashDrawer);
-		uInterface.print("atm initialization: ");
+		/*uInterface.print("atm initialization: ");
 		for (int i = 0; i < 10; i++) {
 			uInterface.print("* ");
 			try {
@@ -28,7 +28,7 @@ public class InitAction implements AbstractAction {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-		}
-		return AtmManager.States.CURRENCY_CHOICE;
+		}*/
+		return Atm.States.CURRENCY_CHOICE;
 	}
 }

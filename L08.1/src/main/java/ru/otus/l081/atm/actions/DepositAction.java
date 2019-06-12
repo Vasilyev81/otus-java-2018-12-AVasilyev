@@ -1,7 +1,7 @@
 package ru.otus.l081.atm.actions;
 
-import ru.otus.l081.atm.AtmManager;
-import ru.otus.l081.atm.Transaction;
+import ru.otus.l081.atm.Atm;
+import ru.otus.l081.atm.transactions.Transaction;
 import ru.otus.l081.userinterface.UserInterface;
 
 import java.util.List;
@@ -18,17 +18,17 @@ public class DepositAction implements AbstractAction {
 	}
 
 	@Override
-	public AtmManager.States execute() {
+	public Atm.States execute() {
 		ui.print("\nChoose banknotes denomination which you will add from listed below:\n");
 		ui.printList(denominationsList);
 		ui.print("\nAlso you can enter \"0\" to go back to previous menu.");
 		Integer denomination = handleDenominationInput();
 		Integer numberOfBanknotes = handleNumberOfBanknotesInput();
 		if (denomination == 0 || numberOfBanknotes == 0) {
-			return AtmManager.States.CURRENCY_CHOICE;
+			return Atm.States.CURRENCY_CHOICE;
 		}
 		transaction.deposit(denomination, numberOfBanknotes);
-		return AtmManager.States.CURRENCY_BALANCE;
+		return Atm.States.CURRENCY_BALANCE;
 	}
 
 	private Integer handleNumberOfBanknotesInput() {

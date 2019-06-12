@@ -1,6 +1,6 @@
 package ru.otus.l081.atm.actions;
 
-import ru.otus.l081.atm.AtmManager;
+import ru.otus.l081.atm.Atm;
 import ru.otus.l081.userinterface.UserInterface;
 
 public class TransactionChoice implements AbstractAction {
@@ -11,7 +11,7 @@ public class TransactionChoice implements AbstractAction {
 	}
 
 	@Override
-	public AtmManager.States execute() {
+	public Atm.States execute() {
 		StringBuilder sb = new StringBuilder()
 				.append("\nYou can deposit or withdraw money.")
 				.append("\nTo pass money ->1\n")
@@ -23,30 +23,30 @@ public class TransactionChoice implements AbstractAction {
 		return handleActionChoiceInput();
 	}
 
-	private AtmManager.States handleActionChoiceInput() {
-		AtmManager.States states;
+	private Atm.States handleActionChoiceInput() {
+		Atm.States states;
 		switch (ui.read()) {
 			case ("1"): {
-				states = AtmManager.States.DEPOSIT;
+				states = Atm.States.DEPOSIT;
 				break;
 			}
 			case ("2"): {
-				states = AtmManager.States.WITHDRAW;
+				states = Atm.States.WITHDRAW;
 				break;
 			}
 			case ("3"): {
-				states = AtmManager.States.CURRENCY_CHOICE;
+				states = Atm.States.CURRENCY_CHOICE;
 				break;
 			}case ("4"): {
-				states = AtmManager.States.CURRENCY_BALANCE;
+				states = Atm.States.CURRENCY_BALANCE;
 				break;
 			}case ("5"): {
-				states = AtmManager.States.FINISH_WORK;
+				states = Atm.States.FINISH_WORK;
 				break;
 			}
 			default: { //TODO> make while(unsupportedValue) to handle wrong input inside this class, without going back to main flow
 				ui.print("\nYou input unsupported value,\ntry again!");
-				states = AtmManager.States.ACTION_CHOICE;
+				states = Atm.States.ACTION_CHOICE;
 			}
 		}
 		return states;
