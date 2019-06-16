@@ -1,7 +1,7 @@
 package ru.otus.l081.atm.actions;
 
-import ru.otus.l081.atm.Atm;
+import ru.otus.l081.atm.AtmStates;
 
 public interface AbstractAction {
-	Atm.States execute();
+	AtmStates execute();
 }

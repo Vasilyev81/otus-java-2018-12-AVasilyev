@@ -28,6 +28,6 @@ public class AtmUserInterface implements UserInterface {
 	}
 
 	public <E>void printList(List<E> list) {
-		print(list.stream().map(Object::toString).collect(Collectors.joining(", ")));
+		print(list.stream().map(Object::toString).collect(Collectors.joining(", ", "", "\n")));
 	}
 }

@@ -1,20 +1,23 @@
 package ru.otus.l081.atm.actions;
 
-import ru.otus.l081.atm.States;
+import ru.otus.l081.atm.AtmStates;
 import ru.otus.l081.userinterface.UserInterface;
 
-public class TransactionChoice implements AbstractAction {
-	private UserInterface ui;
+import java.util.HashMap;
+import java.util.Map;
 
-	public TransactionChoice(UserInterface ui) {
+public class SelectTransactionAction implements AbstractAction {
+	private final UserInterface ui;
+
+	public SelectTransactionAction(UserInterface ui) {
 		this.ui = ui;
 	}
 
 	@Override
-	public States execute() {
+	public AtmStates execute() {
 		StringBuilder sb = new StringBuilder()
-				.append("\nYou can deposit or withdraw money.")
-				.append("\nTo pass money ->1\n")
+				.append("\nYou can deposit or withdraw money.\n")
+				.append("To deposit money ->1\n")
 				.append("To withdraw money -> 2\n")
 				.append("To go back to \"Currency choice\" -> 3\n")
 				.append("To get currencies balance -> 4\n")
@@ -23,32 +26,20 @@ public class TransactionChoice implements AbstractAction {
 		return handleActionChoiceInput();
 	}
 
-	private States handleActionChoiceInput() {
-		States states;
-		switch (ui.read()) {
-			case ("1"): {
-				states = States.DEPOSIT;
-				break;
-			}
-			case ("2"): {
-				states = States.WITHDRAW;
-				break;
-			}
-			case ("3"): {
-				states = States.CURRENCY_CHOICE;
-				break;
-			}case ("4"): {
-				states = States.CURRENCY_BALANCE;
-				break;
-			}case ("5"): {
-				states = States.FINISH_WORK;
-				break;
-			}
-			default: { //TODO> make while(unsupportedValue) to handle wrong input inside this class, without going back to main flow
-				ui.print("\nYou input unsupported value,\ntry again!");
-				states = States.ACTION_CHOICE;
-			}
+	private AtmStates handleActionChoiceInput() {
+		int choise;
+		try {
+			choise = Integer.parseInt(String.valueOf(ui.read().trim().charAt(0)));
+		}catch (NumberFormatException ex){
+			ui.print("\nYou input unsupported value,\ntry again!");
+			return AtmStates.ACTION_CHOICE;
 		}
-		return states;
+		Map<Integer, AtmStates> statesMap = new HashMap<>();
+		statesMap.put(1, AtmStates.DEPOSIT);
+		statesMap.put(2, AtmStates.WITHDRAW);
+		statesMap.put(3, AtmStates.CURRENCY_CHOICE);
+		statesMap.put(4, AtmStates.CURRENCY_BALANCE);
+		statesMap.put(5, AtmStates.FINISH_WORK);
+		return statesMap.get(choise); //TODO> NPE throws after getting "5" from this map
 	}
 }

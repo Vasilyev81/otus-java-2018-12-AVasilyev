@@ -1,7 +1,7 @@
 package ru.otus.l081.department.actions;
 
-import ru.otus.l081.department.Department;
+import ru.otus.l081.department.DepartmentStates;
 
 public interface AbstractAction {
-	Department.States execute();
+	DepartmentStates execute();
 }

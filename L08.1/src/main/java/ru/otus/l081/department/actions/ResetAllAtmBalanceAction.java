@@ -1,6 +1,6 @@
 package ru.otus.l081.department.actions;
 
-import ru.otus.l081.department.Department;
+import ru.otus.l081.department.DepartmentStates;
 import ru.otus.l081.department.caretaker.Caretaker;
 import ru.otus.l081.userinterface.UserInterface;
 
@@ -15,14 +15,14 @@ public class ResetAllAtmBalanceAction implements AbstractAction {
 	}
 
 	@Override
-	public Department.States execute() {
-		ui.print("Resetting ALL ATM's to saved backups\n");
+	public DepartmentStates execute() {
+		ui.print("\nResetting ALL ATM's to saved backups\n");
 		boolean restore = caretaker.restoreAll();
 		if (restore) {
 			ui.print("All ATM's is restored from backup.\n");
 		} else {
-			ui.print("Something went wrong!\nGo and kill programmer!)))");
+			ui.print("Something went wrong!\nGo and kill programmer!\n)))");
 		}
-		return Department.States.CHOOSE_ACTION;
+		return DepartmentStates.CHOOSE_ACTION;
 	}
 }

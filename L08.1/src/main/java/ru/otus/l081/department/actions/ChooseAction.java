@@ -1,7 +1,10 @@
 package ru.otus.l081.department.actions;
 
-import ru.otus.l081.department.Department;
+import ru.otus.l081.department.DepartmentStates;
 import ru.otus.l081.userinterface.UserInterface;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ChooseAction implements AbstractAction {
 	private UserInterface userInterface;
@@ -11,7 +14,7 @@ public class ChooseAction implements AbstractAction {
 	}
 
 	@Override
-	public Department.States execute() {
+	public DepartmentStates execute() {
 		StringBuilder sb = new StringBuilder()
 				.append("Choose what you want to do:\n")
 				.append("Work with ATM  -> 1\n")
@@ -24,39 +27,17 @@ public class ChooseAction implements AbstractAction {
 		return handleUserInput();
 	}
 
-	private Department.States handleUserInput() {
+	private DepartmentStates handleUserInput() {
 		String choise = userInterface.read().trim().toUpperCase();
-		Department.States result;
-		switch (choise) {
-			case "1": {
-				result = Department.States.WORK_WITH_ATM;
-				break;
-			}
-			case "2": {
-				result = Department.States.GET_ATM_BALANCE;
-				break;
-			}
-			case "3": {
-				result = Department.States.GET_ALL_ATM_BALANCE;
-				break;
-			}
-			case "4": {
-				result = Department.States.RESET_ATM;
-				break;
-			}
-			case "5": {
-				result = Department.States.RESET_ALL_ATM;
-				break;
-			}case "6": {
-				result = Department.States.STOP;
-				break;
-			}
-			default: {
-				result = Department.States.CHOOSE_ACTION;
-				break;
-			}
-		}
+		Map<String, DepartmentStates> statesMap = new HashMap<>();
+		statesMap.put("1", DepartmentStates.WORK_WITH_ATM);
+		statesMap.put("2", DepartmentStates.GET_ATM_BALANCE);
+		statesMap.put("3", DepartmentStates.GET_ALL_ATM_BALANCE);
+		statesMap.put("4", DepartmentStates.RESET_ATM);
+		statesMap.put("5", DepartmentStates.RESET_ALL_ATM);
+		statesMap.put("6", DepartmentStates.STOP);
+		DepartmentStates result = statesMap.get(choise);
+		if(result == null) result = DepartmentStates.CHOOSE_ACTION;
 		return result;
 	}
 }
-//WORK_WITH_ATM, GET_ATM_BALANCE, GET_ALL_ATM_BALANCE, RESET_ATM, RESET_ALL_ATM

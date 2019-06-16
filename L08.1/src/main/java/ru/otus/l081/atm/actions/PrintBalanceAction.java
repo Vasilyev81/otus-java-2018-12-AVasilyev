@@ -1,21 +1,21 @@
 package ru.otus.l081.atm.actions;
 
-import ru.otus.l081.atm.Atm;
-import ru.otus.l081.atm.cashdrawer.CashDrawer;
+import ru.otus.l081.atm.AtmStates;
+import ru.otus.l081.atm.transactions.Transaction;
 import ru.otus.l081.userinterface.UserInterface;
 
 public class PrintBalanceAction implements AbstractAction {
-	private UserInterface ui;
-	CashDrawer cashDrawer;
+	private final UserInterface ui;
+	private final Transaction transaction;
 
-	public PrintBalanceAction(UserInterface ui, CashDrawer cashDrawer) {
+	public PrintBalanceAction(UserInterface ui, Transaction transaction) {
 		this.ui = ui;
-		this.cashDrawer = cashDrawer;
+		this.transaction = transaction;
 	}
 
 	@Override
-	public Atm.States execute() {
-		ui.print(cashDrawer.getBalance());
-		return Atm.States.CURRENCY_CHOICE;
+	public AtmStates execute() {
+		ui.print(new StringBuilder().append("\nBalance by currency:\n") + transaction.getBalanceAsString());
+		return AtmStates.CURRENCY_CHOICE;
 	}
 }

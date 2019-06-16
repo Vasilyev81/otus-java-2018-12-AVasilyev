@@ -1,13 +1,12 @@
 package ru.otus.l081.atm.actions;
 
-import ru.otus.l081.atm.Atm;
+import ru.otus.l081.atm.AtmStates;
 import ru.otus.l081.atm.transactions.Transaction;
-import ru.otus.l081.atm.transactions.TransactionException;
 import ru.otus.l081.userinterface.UserInterface;
 
 public class WithdrawAction implements AbstractAction {
-	private UserInterface ui;
-	private Transaction transaction;
+	private final UserInterface ui;
+	private final Transaction transaction;
 
 	public WithdrawAction(UserInterface ui, Transaction transaction) {
 		this.ui = ui;
@@ -15,37 +14,33 @@ public class WithdrawAction implements AbstractAction {
 	}
 
 	@Override
-	public Atm.States execute() {
+	public AtmStates execute() {
 		Integer withdrawValue = handleWithdrawInput();
-		try {
-			String userOutput = transaction.withdraw(withdrawValue);
-			ui.print("Take your money: " + userOutput);
-		} catch (TransactionException e) {
-			e.getMessage();
-		}
-		return Atm.States.CURRENCY_BALANCE;
+		String userOutput = transaction.withdraw(withdrawValue);
+		ui.print(new StringBuilder().append("Take your money:\n").append(userOutput).toString());
+		return AtmStates.CURRENCY_BALANCE;
 	}
 
 	private Integer handleWithdrawInput() {
 		Integer result = 0;
 		Integer minAvailableBanknote = transaction.getMinAvailableDenomination();
 		Integer availableSum = transaction.getAvailableCashForCurrentCurrency();
-		ui.print("Withdraw value must be a multiple of " + minAvailableBanknote + " and not more then " + availableSum + "." );
-		ui.print("\nYour choice is:\n->");
+		ui.print(new StringBuilder().append("\nWithdraw value must be a multiple of ").append(minAvailableBanknote).append(" and not more then ").append(availableSum).append(".\n").toString());
+		ui.print("Enter the required amount:\n");
 		boolean isValid = false;
 		while (!isValid) {
 			try {
 				result = Integer.parseInt(ui.read());
 			} catch (NumberFormatException e) {
-				ui.print("\nInputted result is not a number,\ntry again:");
+				ui.print("Inputted result is not a number,\ntry again:\n");
 				continue;
 			}
 			if (result % minAvailableBanknote != 0) {
-				ui.print("\nInputted result is not multiple of: " + minAvailableBanknote + "\ntry again:");
+				ui.print(new StringBuilder().append("Inputted result is not multiple of: ").append(minAvailableBanknote).append("\ntry again:\n").toString());
 				continue;
 			}
 			if (result > availableSum) {
-				ui.print("\nNot enough money for withdraw the required amount,\ntry entering a lower result:");
+				ui.print("Not enough money for withdraw the required amount,\ntry entering a lower result:\n");
 				continue;
 			}
 			isValid = true;

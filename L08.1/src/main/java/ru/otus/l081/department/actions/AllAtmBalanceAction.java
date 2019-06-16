@@ -1,7 +1,7 @@
 package ru.otus.l081.department.actions;
 
 import ru.otus.l081.atm.AtmInterface;
-import ru.otus.l081.department.Department;
+import ru.otus.l081.department.DepartmentStates;
 import ru.otus.l081.userinterface.UserInterface;
 
 import java.util.List;
@@ -16,16 +16,16 @@ public class AllAtmBalanceAction implements AbstractAction {
 	}
 
 	@Override
-	public Department.States execute() {
+	public DepartmentStates execute() {
 		StringBuilder balance = new StringBuilder();
 		for (int i = 0; i < atms.size(); i++) {
-			balance.append("ATM-")
+			balance.append("\nATM-")
 					.append(i + 1)
 					.append(" balance:\n")
-					.append(this.atms.get(i).getBalance())
+					.append(this.atms.get(i).getBalanceAsString())
 					.append("\n");
 		}
 		ui.print(balance.toString());
-		return Department.States.CHOOSE_ACTION;
+		return DepartmentStates.CHOOSE_ACTION;
 	}
 }

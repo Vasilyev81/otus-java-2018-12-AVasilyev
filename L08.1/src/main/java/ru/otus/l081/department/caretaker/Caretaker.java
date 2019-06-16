@@ -3,26 +3,26 @@ package ru.otus.l081.department.caretaker;
 import ru.otus.l081.atm.AtmInterface;
 import ru.otus.l081.atm.transactions.AtmMementoInterface;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Caretaker {
-	private Map<Integer, AtmMementoInterface> mementos;
+	private final List<AtmInterface> atms = new ArrayList<>();
+	private final Map<String, AtmMementoInterface> mementos;
 
 	public Caretaker() {
 		mementos = new HashMap<>();
 	}
 
-	public void saveBackup(AtmInterface atm, int i) {
-		AtmMementoInterface memento = atm.getMemento();
-		mementos.put(i, memento);
+	public void saveBackup(AtmInterface atm) {
+		atms.add(atm);
+		atm.saveMemento(mementos);
 	}
 
 	public boolean restoreFromBackup(int i) {
-		return mementos.get(i).restore();
+		return atms.get(i).selectFromMementos(mementos).restore(mementos);
 	}
 
 	public boolean restoreAll() {
-		return mementos.values().stream().map(AtmMementoInterface::restore).noneMatch(b -> (!b));
+		 return atms.stream().map(atmInterface -> atmInterface.selectFromMementos(mementos)).map(atmMementoInterface -> atmMementoInterface.restore(mementos)).noneMatch(b -> (!b));
 	}
 }

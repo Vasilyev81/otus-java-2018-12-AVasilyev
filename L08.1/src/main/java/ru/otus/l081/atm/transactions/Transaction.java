@@ -1,76 +1,86 @@
 package ru.otus.l081.atm.transactions;
 
-import ru.otus.l081.atm.cashdrawer.CashDrawer;
+import ru.otus.l081.atm.cashdrawer.BanknoteCell;
+import ru.otus.l081.atm.cashdrawer.CashBox;
+import ru.otus.l081.atm.cashdrawer.Currency;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Transaction {
-	private CashDrawer cashDrawer;
-	private String currentCurrency;
+	private CashBox cashBox;
+	private Currency currentCurrency;
 
-	//TODO: Move all methods, except deposit, withdraw and checkTransaction, to CashDrawer.
-
-	public Transaction(CashDrawer cashDrawer, String currentCurrency) {
-		this.cashDrawer = cashDrawer;
+	public Transaction(CashBox cashBox, Currency currentCurrency) {
+		this.cashBox = cashBox;
 		this.currentCurrency = currentCurrency;
 	}
 
-	public void deposit(Integer denomination, Integer numberOfBanknotes) {
-		cashDrawer.addBanknotes(currentCurrency, denomination, numberOfBanknotes);
+	public void deposit(int denomination, int numberOfBanknotes) {
+		cashBox.addBanknotes(currentCurrency, denomination, numberOfBanknotes);
 	}
 
-	public String withdraw(Integer withdrawValue) throws TransactionException {
+	public String withdraw(int withdrawValue) {
 		int withdrawValueForCheck = withdrawValue;
-		List<Integer> denominationsList = getDenominationsListByCurrencyName(currentCurrency);
-		List<Integer> numberOfBanknotesList = cashDrawer.getNumberOfBanknotesListByCurrencyName(currentCurrency);
-		List<Integer> withdrawToUser = new ArrayList();
-		List<Integer> saveToCashdrawer = new ArrayList();
-		int denomination;
-		int numOfBanknotes;
-		for (int index = numberOfBanknotesList.size() - 1; index >= 0; index--) {
-			denomination = denominationsList.get(index);
-			numOfBanknotes = numberOfBanknotesList.get(index);
-			if (withdrawValue >= denomination) {
-				int quotient = withdrawValue / denomination;
-				if (quotient >= numOfBanknotes) {
-					quotient = numOfBanknotes;
-					saveToCashdrawer.add(0);
-					withdrawToUser.add(quotient);
-					withdrawValue -= quotient*denomination;
-				} else{
-					saveToCashdrawer.add(numOfBanknotes-quotient);
-					withdrawToUser.add(quotient);
-					withdrawValue -= quotient*denomination;
+		List<BanknoteCell> nowInCashBox = cashBox.getCurrencyBox(currentCurrency).getInternalStorage();
+		List<BanknoteCell> withdrawToUser = CashBoxUtil.createZeroQuantityCurrencyBox(currentCurrency);
+		List<BanknoteCell> saveToCashDrawer = CashBoxUtil.createZeroQuantityCurrencyBox(currentCurrency);
+		int nominal;
+		int availableNumOfBanknotes;
+		for (int index = nowInCashBox.size() - 1; index >= 0; index--) {
+			BanknoteCell currentBanknote = nowInCashBox.get(index);
+			nominal = currentBanknote.getNominal();
+			availableNumOfBanknotes = currentBanknote.getQuantity();
+			BanknoteCell toUser = withdrawToUser.get(index);
+			BanknoteCell toCashDrawer = saveToCashDrawer.get(index);
+			if (withdrawValue >= nominal) {
+				int quotient = withdrawValue / nominal;
+				if (quotient >= availableNumOfBanknotes) {
+					quotient = availableNumOfBanknotes;
+					toCashDrawer.setQuantity(0);
+					toUser.setQuantity(quotient);
+					withdrawValue -= quotient * nominal;
+				} else {
+					toCashDrawer.setQuantity(availableNumOfBanknotes - quotient);
+					toUser.setQuantity(quotient);
+					withdrawValue -= quotient * nominal;
 				}
-			}
-			else {
-				withdrawToUser.add(0);
-				saveToCashdrawer.add(numOfBanknotes);
+			} else {
+				toUser.setQuantity(0);
+				toCashDrawer.setQuantity(availableNumOfBanknotes);
 			}
 		}
-		saveToCashdrawer = reverse(saveToCashdrawer);
+		saveToCashDrawer = reverse(saveToCashDrawer);
 		withdrawToUser = reverse(withdrawToUser);
-		String userWithdraw = checkTransaction(withdrawToUser, denominationsList, withdrawValueForCheck);
-		cashDrawer.setNumberOfBanknotes(currentCurrency, saveToCashdrawer);
-		return userWithdraw;
+		String result;
+		if (checkTransaction(withdrawToUser, withdrawValueForCheck)) {
+			cashBox.setCurrencyBox(currentCurrency, saveToCashDrawer);
+			result = getUserOutputString(withdrawToUser);
+		} else result = "Something went wrong\n";
+		return result;
 	}
 
-	private String checkTransaction(List<Integer> withdrawToUser, List<Integer> denominationsList, Integer withdrawValue) throws TransactionException {
-		int check = 0;
+	private String getUserOutputString(List<BanknoteCell> withdrawToUser) {
 		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < withdrawToUser.size(); i++) {
-			System.out.println(denominationsList.get(i) + ": " + withdrawToUser.get(i));
-			check += withdrawToUser.get(i) * denominationsList.get(i);
-			sb.append(denominationsList.get(i))
-					.append(" ")
-					.append(currentCurrency)
-					.append(":")
-					.append(withdrawToUser.get(i))
-					.append("\n");
+		for (BanknoteCell banknoteCell : withdrawToUser) {
+			if (banknoteCell.getBalance() > 0) {
+				sb.append(currentCurrency.name())
+						.append(",")
+						.append(banknoteCell.getNominal())
+						.append(" -> ")
+						.append(banknoteCell.getQuantity())
+						.append("\n");
+			}
 		}
-		if (check != withdrawValue) throw new TransactionException("Something went wrong");
 		return sb.toString();
+	}
+
+	private boolean checkTransaction(List<BanknoteCell> withdrawToUser, int withdrawValue) {
+		int check = 0;
+		for (BanknoteCell banknoteCell : withdrawToUser) {
+			if (banknoteCell.getBalance() > 0) check += banknoteCell.getBalance();
+		}
+		return check == withdrawValue;
 	}
 
 	private <T> List<T> reverse(List<T> list) {
@@ -81,38 +91,27 @@ public class Transaction {
 		return reversedList;
 	}
 
-	public List getDenominationsListByCurrencyName(String currentCurrency) {
-		return cashDrawer.getDenominationsListByCurrencyName(currentCurrency);
+	public int getMinAvailableDenomination() {
+		return cashBox.getMinAvailableBanknote(currentCurrency);
 	}
 
-	public Integer getMinAvailableDenomination() {
-		return cashDrawer.getMinAvailableBanknote(currentCurrency);
-	}
-
-	public Integer getAvailableCashForCurrentCurrency() {
-		return cashDrawer.totalSum(currentCurrency);
-	}
-	public Integer getAvailableCashByCurrencyName(String currName) {
-		return cashDrawer.totalSum(currName);
+	public int getAvailableCashForCurrentCurrency() {
+		return cashBox.totalSum(currentCurrency);
 	}
 
 	public List getDenominationsList() {
-		return cashDrawer.getDenominationsListByCurrencyName(currentCurrency);
+		return cashBox.getNominationsListByCurrencyName(currentCurrency);
 	}
 
-	public List<String> getCurrenciesNamesList() {
-		return cashDrawer.getCurrenciesNamesList();
+	public void setCurrentCurrency(Currency currency) {
+		currentCurrency = currency;
 	}
 
-	public void setCurrency(String reducedChoice) {
-		currentCurrency = reducedChoice;
-	}
-
-	public void setCashDrawer(CashDrawer cashDrawer) {
-		this.cashDrawer = cashDrawer;
-	}
-
-	public String getCurrency() {
+	public Currency getCurrentCurrency() {
 		return currentCurrency;
+	}
+
+	public String getBalanceAsString() {
+		return cashBox.getBalanceAsString();
 	}
 }

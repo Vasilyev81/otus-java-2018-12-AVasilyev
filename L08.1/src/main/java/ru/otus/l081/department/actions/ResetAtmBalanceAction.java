@@ -1,7 +1,7 @@
 package ru.otus.l081.department.actions;
 
 import ru.otus.l081.atm.AtmInterface;
-import ru.otus.l081.department.Department;
+import ru.otus.l081.department.DepartmentStates;
 import ru.otus.l081.department.caretaker.Caretaker;
 import ru.otus.l081.userinterface.UserInterface;
 
@@ -19,17 +19,17 @@ public class ResetAtmBalanceAction implements AbstractAction {
 	}
 
 	@Override
-	public Department.States execute() {
+	public DepartmentStates execute() {
 		int atms = this.atms.size();
 		int choise = 0;
 		while (choise < 1 || choise > atms) {
-			ui.print("Choose AtmMain (1-" + atms + "):\n");
+			ui.print("\nChoose AtmMain (1-" + atms + "):\n");
 			choise = chooseAtm();
 		}
 		boolean restore = caretaker.restoreFromBackup(choise);
 		if(restore) {ui.print("ATM-" + choise + " state is restored from backup.\n");}
 		else {ui.print("Something went wrong!\n");}
-		return Department.States.CHOOSE_ACTION;
+		return DepartmentStates.CHOOSE_ACTION;
 	}
 
 	private int chooseAtm() {

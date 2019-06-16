@@ -1,49 +1,43 @@
 package ru.otus.l081.atm;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import ru.otus.l081.atm.actions.*;
-import ru.otus.l081.atm.cashdrawer.CashDrawer;
-import ru.otus.l081.atm.transactions.AtmMementoInterface;
-import ru.otus.l081.atm.transactions.Transaction;
-import ru.otus.l081.userinterface.AtmUserInterface;
-import ru.otus.l081.userinterface.UserInterface;
+import ru.otus.l081.atm.cashdrawer.*;
+import ru.otus.l081.atm.transactions.*;
+import ru.otus.l081.userinterface.*;
 
 import java.io.*;
+import java.util.Arrays;
+import java.util.Map;
 
 public class Atm implements AtmInterface, Runnable {
-	private States state;
-
-	//TODO: Pick out to the top level as explicit enum
-	public enum States {
-		CURRENCY_CHOICE,
-		ACTION_CHOICE,
-		DEPOSIT,
-		WITHDRAW,
-		CURRENCY_BALANCE,
-		FINISH_WORK,
-		BACKUP
-	}
-
+	private final String ID;
+	private AtmStates state;
 	private UserInterface ui;
-	private CashDrawer cashDrawer;
-	private Transaction transaction;
-	private Utils utils;
+	private CashBox cashBox;
+	private final Transaction transaction;
 
 	public Atm() {
+		ID = RandomStringUtils.randomAlphanumeric(10);
 		this.ui = new AtmUserInterface();
-		this.cashDrawer = new CashDrawer();
-		String currentCurrency = "";
-		this.transaction = new Transaction(cashDrawer, currentCurrency);
-		this.utils = new Utils(transaction);
+		this.cashBox = new CashBox();
+		Currency currentCurrency = Currency.RUR;
+		this.transaction = new Transaction(cashBox, currentCurrency);
 	}
 
 	@Override
-	public AtmMementoInterface getMemento() {
-		return new Memento(this);
+	public void saveMemento(Map<String, AtmMementoInterface> mementos) {
+		mementos.put(ID, new Memento(this));
 	}
 
 	@Override
-	public String getBalance() {
-		return cashDrawer.getBalance();
+	public AtmMementoInterface selectFromMementos(Map<String, AtmMementoInterface> mementos) {
+		return mementos.get(ID);
+	}
+
+	@Override
+	public String getBalanceAsString() {
+		return cashBox.getBalanceAsString();
 	}
 
 	@Override
@@ -53,59 +47,32 @@ public class Atm implements AtmInterface, Runnable {
 
 	void initAndStart() {
 		init();
-		state = States.CURRENCY_CHOICE;
+		state = AtmStates.CURRENCY_CHOICE;
 		work();
 	}
 
 	@Override
 	public void init() {
-		new InitAction(ui, cashDrawer, utils).execute();
+		new InitAction(ui, cashBox).execute();
 	}
 
 	@Override
 	public void start() {
-		state = States.CURRENCY_CHOICE;
+		state = AtmStates.CURRENCY_CHOICE;
 		work();
 	}
 
 	private void work() {
 		boolean work = true;
 		while (work) {
-			switch (state) {
-				case CURRENCY_CHOICE: {
-					state = perform(new CurrencyChoice(ui, transaction));
-					break;
-				}
-				case ACTION_CHOICE: {
-					state = perform(new TransactionChoice(ui));
-					break;
-				}
-				case DEPOSIT: {
-					state = perform(new DepositAction(ui, transaction));
-					break;
-				}
-				case WITHDRAW: {
-					state = perform(new WithdrawAction(ui, transaction));
-					break;
-				}
-				case CURRENCY_BALANCE: {
-					state = perform(new PrintBalanceAction(ui, cashDrawer));
-					break;
-				}
-				case BACKUP: {
-					state = perform(new BackupAction(state, transaction));
-					break;
-				}
-				case FINISH_WORK: {
-					work = false;
-					break;
-				}
+			AtmStates result = Arrays.stream(AtmStates.values()).filter(states -> states == state)
+					.map(state -> state.make(ui, transaction)).findFirst().get().execute();
+			if (result == null) {
+				work = false;
+			} else {
+				this.state = result;
 			}
 		}
-	}
-
-	private States perform(AbstractAction action) {
-		return action.execute();
 	}
 
 	private class Memento implements AtmMementoInterface {
@@ -118,8 +85,8 @@ public class Atm implements AtmInterface, Runnable {
 		}
 
 		@Override
-		public boolean restore() {
-			return atm.restoreFromSnapshot(snapshot);
+		public boolean restore(Map<String, AtmMementoInterface> store) {
+			return atm.restoreFromSnapshot((Memento) store.get(ID));
 		}
 	}
 
@@ -128,7 +95,7 @@ public class Atm implements AtmInterface, Runnable {
 		ObjectOutputStream objectOS;
 		try {
 			objectOS = new ObjectOutputStream(byteOS);
-			objectOS.writeObject(this.cashDrawer);
+			objectOS.writeObject(this.cashBox);
 			objectOS.flush();
 			objectOS.close();
 		} catch (IOException e) {
@@ -137,17 +104,18 @@ public class Atm implements AtmInterface, Runnable {
 		return byteOS.toByteArray();
 	}
 
-	private boolean restoreFromSnapshot(byte[] snapshot) {
+	private boolean restoreFromSnapshot(Memento memento) {
 		boolean result = false;
-		CashDrawer cd = null;
+		CashBox cd = null;
+		byte[] snapshot = memento.snapshot;
 		try {
 			ObjectInputStream objectIS = new ObjectInputStream(new ByteArrayInputStream(snapshot));
-			cd = (CashDrawer) objectIS.readObject();
+			cd = (CashBox) objectIS.readObject();
 		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 		if (cd != null) {
-			cashDrawer = cd;
+			cashBox = cd;
 			result = true;
 		}
 		return result;

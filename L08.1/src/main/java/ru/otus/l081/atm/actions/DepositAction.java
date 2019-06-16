@@ -1,15 +1,15 @@
 package ru.otus.l081.atm.actions;
 
-import ru.otus.l081.atm.Atm;
+import ru.otus.l081.atm.AtmStates;
 import ru.otus.l081.atm.transactions.Transaction;
 import ru.otus.l081.userinterface.UserInterface;
 
 import java.util.List;
 
 public class DepositAction implements AbstractAction {
-	private UserInterface ui;
-	private List denominationsList;
-	private Transaction transaction;
+	private final UserInterface ui;
+	private final List denominationsList;
+	private final Transaction transaction;
 
 	public DepositAction(UserInterface ui, Transaction transaction) {
 		this.ui = ui;
@@ -18,17 +18,35 @@ public class DepositAction implements AbstractAction {
 	}
 
 	@Override
-	public Atm.States execute() {
-		ui.print("\nChoose banknotes denomination which you will add from listed below:\n");
+	public AtmStates execute() {
+		ui.print("\nChoose banknote nominal which you will add, from listed below:\n");
 		ui.printList(denominationsList);
-		ui.print("\nAlso you can enter \"0\" to go back to previous menu.");
+		ui.print("Also you can enter \"0\" to go back to previous menu.\n");
 		Integer denomination = handleDenominationInput();
 		Integer numberOfBanknotes = handleNumberOfBanknotesInput();
 		if (denomination == 0 || numberOfBanknotes == 0) {
-			return Atm.States.CURRENCY_CHOICE;
+			return AtmStates.CURRENCY_CHOICE;
 		}
 		transaction.deposit(denomination, numberOfBanknotes);
-		return Atm.States.CURRENCY_BALANCE;
+		return AtmStates.CURRENCY_BALANCE;
+	}
+
+	private Integer handleDenominationInput() {
+		boolean isValid = false;
+		int userChoice = -1;
+		int goToCurrencyChoice = 0;
+		while (!isValid) {
+			ui.print("Input banknote denomination:\n");
+			try {
+				userChoice = Integer.parseInt(ui.read());
+			} catch (NumberFormatException e) {
+				ui.print("You input unsupported value, try again!\n");
+			}
+			if (!denominationsList.contains(userChoice) && userChoice != goToCurrencyChoice)
+				ui.print("Value that you input is not valid, try again!\n");
+			else isValid = true;
+		}
+		return userChoice;
 	}
 
 	private Integer handleNumberOfBanknotesInput() {
@@ -36,32 +54,14 @@ public class DepositAction implements AbstractAction {
 		Integer userChoice = -1;
 		Integer goToCurrencyChoice = 0;
 		while (!isValid) {
-			ui.print("\nInput number of banknotes: ");
+			ui.print("Input number of banknotes:\n");
 			try {
 				userChoice = Integer.parseInt(ui.read());
 			} catch (NumberFormatException e) {
-				ui.print("\nYou input unsupported value, try again!");
+				ui.print("You input unsupported value, try again!\n");
 			}
 			if (userChoice < goToCurrencyChoice)
-				ui.print("\nValue that you input is not valid, try again!");
-			else isValid = true;
-		}
-		return userChoice;
-	}
-
-	private Integer handleDenominationInput() {
-		boolean isValid = false;
-		Integer userChoice = -1;
-		Integer goToCurrencyChoice = 0;
-		while (!isValid) {
-			ui.print("\nInput banknote denomination: ");
-			try {
-				userChoice = Integer.parseInt(ui.read());
-			} catch (NumberFormatException e) {
-				ui.print("\nYou input unsupported value, try again!");
-			}
-			if (!denominationsList.contains(userChoice) && userChoice != goToCurrencyChoice)
-				ui.print("\nValue that you input is not valid, try again!");
+				ui.print("Value that you input is not valid, try again!\n");
 			else isValid = true;
 		}
 		return userChoice;
