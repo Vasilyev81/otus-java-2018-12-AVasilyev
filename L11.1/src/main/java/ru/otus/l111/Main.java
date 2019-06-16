@@ -44,8 +44,7 @@ public class Main {
 
 		CompanyDataSet anex = new CompanyDataSet("Anex");
 		CompanyDataSet biblio = new CompanyDataSet("Biblio");
-		dbService.save(anex);
-		dbService.save(biblio);
+		dbService.save(anex, biblio);
 
 		anex.addEmployees(Arrays.asList(user1, user2));
 		biblio.addEmployees(Arrays.asList(user3, user4));
@@ -54,10 +53,8 @@ public class Main {
 		System.out.println(user3);
 		System.out.println(user4);
 
-		dbService.save(user1);
-		dbService.save(user2);
-		dbService.save(user3);
-		dbService.save(user4);
+		dbService.save(user1, user2, user3, user4);
+
 
 		UserDataSet dataSet = (UserDataSet) dbService.read(1);
 		System.out.println("====================================\nread by ID");

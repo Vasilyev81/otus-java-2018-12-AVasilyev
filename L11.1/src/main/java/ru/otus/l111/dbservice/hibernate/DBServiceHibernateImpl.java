@@ -22,24 +22,28 @@ public class DBServiceHibernateImpl implements DBService {
 	}
 
 	private static SessionFactory createSessionFactory(Configuration configuration) {
-		StandardServiceRegistryBuilder builder =  new StandardServiceRegistryBuilder();
+		StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder();
 		builder.applySettings(configuration.getProperties());
 		ServiceRegistry serviceRegistry = builder.build();
 		return configuration.buildSessionFactory(serviceRegistry);
 	}
+
 	public String getLocalStatus() {
 		return runInSession(session -> {
 			return session.getTransaction().getStatus().name();
 		});
 	}
 
-	public void save(DataSet dataSet) {
-		try (Session session = sessionFactory.openSession()) {
+
+	public void save(DataSet... dataSet) {
+		saveInTransaction(session -> {
 			DataSetDAO dao = new DataSetDAO(session);
-			dao.save(dataSet);
-			session.save(dataSet);
-			session.close();
-		}
+			for (DataSet ds :dataSet) {
+				dao.save(ds);
+				session.save(ds);
+			}
+			return null;
+		});
 	}
 
 	public UserDataSet read(long id) {
@@ -67,6 +71,13 @@ public class DBServiceHibernateImpl implements DBService {
 			DataSetDAO dao = new DataSetDAO(session);
 			return dao.readByName(name);
 		});
+	}
+
+	<R> void saveInTransaction(Function<Session, R> function) {
+		Session session = sessionFactory.openSession();
+		Transaction transaction = session.beginTransaction();
+		function.apply(session);
+		transaction.commit();
 	}
 
 	private <R> R runInSession(Function<Session, R> function) {

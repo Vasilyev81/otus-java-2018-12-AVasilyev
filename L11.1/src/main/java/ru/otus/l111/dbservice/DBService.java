@@ -7,7 +7,7 @@ import java.util.List;
 public interface DBService<T extends DataSet> {
 	String getLocalStatus();
 
-	void save(T dataSet);
+	void save(T... dataSet);
 
 	T read(long id);
 
