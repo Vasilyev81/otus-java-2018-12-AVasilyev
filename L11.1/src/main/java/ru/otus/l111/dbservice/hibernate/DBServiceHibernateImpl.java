@@ -36,11 +36,10 @@ public class DBServiceHibernateImpl implements DBService {
 
 
 	public void save(DataSet... dataSet) {
-		saveInTransaction(session -> {
+		runInSession(session -> {
 			DataSetDAO dao = new DataSetDAO(session);
 			for (DataSet ds :dataSet) {
 				dao.save(ds);
-				session.save(ds);
 			}
 			return null;
 		});
@@ -71,13 +70,6 @@ public class DBServiceHibernateImpl implements DBService {
 			DataSetDAO dao = new DataSetDAO(session);
 			return dao.readByName(name);
 		});
-	}
-
-	<R> void saveInTransaction(Function<Session, R> function) {
-		Session session = sessionFactory.openSession();
-		Transaction transaction = session.beginTransaction();
-		function.apply(session);
-		transaction.commit();
 	}
 
 	private <R> R runInSession(Function<Session, R> function) {
