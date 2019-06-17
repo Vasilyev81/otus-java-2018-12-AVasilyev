@@ -15,16 +15,16 @@ public class WithdrawAction implements AbstractAction {
 
 	@Override
 	public AtmStates execute() {
-		Integer withdrawValue = handleWithdrawInput();
+		int withdrawValue = handleWithdrawInput();
 		String userOutput = transaction.withdraw(withdrawValue);
 		ui.print(new StringBuilder().append("Take your money:\n").append(userOutput).toString());
 		return AtmStates.CURRENCY_BALANCE;
 	}
 
 	private Integer handleWithdrawInput() {
-		Integer result = 0;
-		Integer minAvailableBanknote = transaction.getMinAvailableDenomination();
-		Integer availableSum = transaction.getAvailableCashForCurrentCurrency();
+		int result = 0;
+		int minAvailableBanknote = transaction.getMinAvailableNominal();
+		int availableSum = transaction.getTotalBalanceForCurrentCurrency();
 		ui.print(new StringBuilder().append("\nWithdraw value must be a multiple of ").append(minAvailableBanknote).append(" and not more then ").append(availableSum).append(".\n").toString());
 		ui.print("Enter the required amount:\n");
 		boolean isValid = false;

@@ -20,16 +20,16 @@ public class CashBox implements Serializable {
 		return sb.toString();
 	}
 
-	public List getNominationsListByCurrencyName(Currency currentCurrency) {
-		return storage.get(currentCurrency).getNominationsList();
+	public List getNominalsListByCurrencyName(Currency currentCurrency) {
+		return storage.get(currentCurrency).getNominalsList();
 	}
 
 	public void addBanknotes(Currency currentCurrency, int nominal, int numberOfBanknotes) {
 		storage.get(currentCurrency).addBanknotes(nominal, numberOfBanknotes);
 	}
 
-	public int getMinAvailableBanknote(Currency currentCurrency) {
-		return storage.get(currentCurrency).getMinAvailableBanknote();
+	public int getMinAvailableNominal(Currency currentCurrency) {
+		return storage.get(currentCurrency).getMinAvailableNominal();
 	}
 
 	public int totalSum(Currency currentCurrency) {

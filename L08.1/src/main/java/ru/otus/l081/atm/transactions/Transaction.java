@@ -91,16 +91,16 @@ public class Transaction {
 		return reversedList;
 	}
 
-	public int getMinAvailableDenomination() {
-		return cashBox.getMinAvailableBanknote(currentCurrency);
+	public int getMinAvailableNominal() {
+		return cashBox.getMinAvailableNominal(currentCurrency);
 	}
 
-	public int getAvailableCashForCurrentCurrency() {
+	public int getTotalBalanceForCurrentCurrency() {
 		return cashBox.totalSum(currentCurrency);
 	}
 
 	public List getDenominationsList() {
-		return cashBox.getNominationsListByCurrencyName(currentCurrency);
+		return cashBox.getNominalsListByCurrencyName(currentCurrency);
 	}
 
 	public void setCurrentCurrency(Currency currency) {

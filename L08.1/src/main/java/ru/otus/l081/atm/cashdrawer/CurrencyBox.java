@@ -21,7 +21,7 @@ public class CurrencyBox implements Serializable {
 		return sb.toString();
 	}
 
-	List getNominationsList() {
+	List getNominalsList() {
 		return storage.stream().map(BanknoteCell::getNominal).collect(Collectors.toList());
 	}
 
@@ -29,7 +29,7 @@ public class CurrencyBox implements Serializable {
 		storage.stream().filter(banknoteCell -> banknoteCell.getNominal() == nominal).findFirst().get().addToQuantity(numberOfBanknotes);
 	}
 
-	int getMinAvailableBanknote() {
+	int getMinAvailableNominal() {
 		return storage.stream().filter(x -> x.getQuantity() > 0).findFirst().map(BanknoteCell::getNominal).get();
 	}
 

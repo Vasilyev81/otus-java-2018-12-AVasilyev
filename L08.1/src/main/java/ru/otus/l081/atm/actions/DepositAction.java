@@ -22,7 +22,7 @@ public class DepositAction implements AbstractAction {
 		ui.print("\nChoose banknote nominal which you will add, from listed below:\n");
 		ui.printList(denominationsList);
 		ui.print("Also you can enter \"0\" to go back to previous menu.\n");
-		Integer denomination = handleDenominationInput();
+		int denomination = handleDenominationInput();
 		Integer numberOfBanknotes = handleNumberOfBanknotesInput();
 		if (denomination == 0 || numberOfBanknotes == 0) {
 			return AtmStates.CURRENCY_CHOICE;
@@ -51,8 +51,8 @@ public class DepositAction implements AbstractAction {
 
 	private Integer handleNumberOfBanknotesInput() {
 		boolean isValid = false;
-		Integer userChoice = -1;
-		Integer goToCurrencyChoice = 0;
+		int userChoice = -1;
+		int goToCurrencyChoice = 0;
 		while (!isValid) {
 			ui.print("Input number of banknotes:\n");
 			try {
