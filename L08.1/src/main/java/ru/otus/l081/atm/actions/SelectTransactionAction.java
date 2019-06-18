@@ -1,6 +1,7 @@
 package ru.otus.l081.atm.actions;
 
 import ru.otus.l081.atm.AtmStates;
+import ru.otus.l081.atm.AtmUtil;
 import ru.otus.l081.userinterface.UserInterface;
 
 import java.util.HashMap;
@@ -27,19 +28,17 @@ public class SelectTransactionAction implements AbstractAction {
 	}
 
 	private AtmStates handleActionChoiceInput() {
-		int choise;
+		Map<Integer, AtmStates> statesMap = AtmUtil.getStatesMap();
+		int choise = 0;
 		try {
 			choise = Integer.parseInt(String.valueOf(ui.read().trim().charAt(0)));
-		}catch (NumberFormatException ex){
-			ui.print("\nYou input unsupported value,\ntry again!");
+			if(choise < 1 || choise > statesMap.size()) {
+				throw new IndexOutOfBoundsException("Value out of bound");
+			}
+		}catch (NumberFormatException | IndexOutOfBoundsException  ex){
+			ui.print("\nYou input unsupported value,\ntry again!\n");
 			return AtmStates.ACTION_CHOICE;
 		}
-		Map<Integer, AtmStates> statesMap = new HashMap<>();
-		statesMap.put(1, AtmStates.DEPOSIT);
-		statesMap.put(2, AtmStates.WITHDRAW);
-		statesMap.put(3, AtmStates.CURRENCY_CHOICE);
-		statesMap.put(4, AtmStates.CURRENCY_BALANCE);
-		statesMap.put(5, AtmStates.FINISH_WORK);
-		return statesMap.get(choise); //TODO> NPE throws after getting "5" from this map
+		return statesMap.get(choise);
 	}
 }

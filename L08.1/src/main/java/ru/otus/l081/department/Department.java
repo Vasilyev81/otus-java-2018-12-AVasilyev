@@ -13,6 +13,7 @@ public class Department {
 	private DepartmentStates state;
 
 	public Department(int atmsNumber) {
+		DepartmentUtil.init();
 		ui = new UserInterfaceImpl();
 		this.atms = new ArrayList<>(atmsNumber);
 		caretaker = new Caretaker();

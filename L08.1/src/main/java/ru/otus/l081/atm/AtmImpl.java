@@ -18,6 +18,7 @@ public class AtmImpl implements Atm, Runnable {
 	private final Transaction transaction;
 
 	public AtmImpl() {
+		AtmUtil.init();
 		ID = RandomStringUtils.randomAlphanumeric(10);
 		this.ui = new UserInterfaceImpl();
 		this.cashBox = new CashBox();

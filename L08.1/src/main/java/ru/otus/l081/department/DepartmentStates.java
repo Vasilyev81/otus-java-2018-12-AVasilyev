@@ -4,7 +4,9 @@ import ru.otus.l081.department.actions.*;
 import ru.otus.l081.department.caretaker.Caretaker;
 import ru.otus.l081.userinterface.UserInterface;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public enum DepartmentStates {
 	CHOOSE_ACTION {

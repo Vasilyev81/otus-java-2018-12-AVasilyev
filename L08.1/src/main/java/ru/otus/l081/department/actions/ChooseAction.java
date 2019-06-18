@@ -1,10 +1,7 @@
 package ru.otus.l081.department.actions;
 
-import ru.otus.l081.department.DepartmentStates;
+import ru.otus.l081.department.*;
 import ru.otus.l081.userinterface.UserInterface;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class ChooseAction implements AbstractAction {
 	private UserInterface userInterface;
@@ -28,16 +25,19 @@ public class ChooseAction implements AbstractAction {
 	}
 
 	private DepartmentStates handleUserInput() {
-		String choise = userInterface.read().trim().toUpperCase();
-		Map<String, DepartmentStates> statesMap = new HashMap<>();
-		statesMap.put("1", DepartmentStates.WORK_WITH_ATM);
-		statesMap.put("2", DepartmentStates.GET_ATM_BALANCE);
-		statesMap.put("3", DepartmentStates.GET_ALL_ATM_BALANCE);
-		statesMap.put("4", DepartmentStates.RESET_ATM);
-		statesMap.put("5", DepartmentStates.RESET_ALL_ATM);
-		statesMap.put("6", DepartmentStates.STOP);
-		DepartmentStates result = statesMap.get(choise);
-		if(result == null) result = DepartmentStates.CHOOSE_ACTION;
+		int choice = 0;
+		try {
+			choice = Integer.parseInt(userInterface.read().trim());
+		} catch (NumberFormatException ex) {
+			userInterface.print("You input unsupported symbols!\n");
+		}
+		DepartmentStates result = DepartmentUtil.getStatesMap().get(choice);
+		if (result == null) {
+			{
+				userInterface.print("You input unsupported value!\n");
+				result = DepartmentStates.CHOOSE_ACTION;
+			}
+		}
 		return result;
 	}
 }
