@@ -1,16 +1,16 @@
 package ru.otus.l081.department.actions;
 
-import ru.otus.l081.atm.AtmInterface;
+import ru.otus.l081.atm.Atm;
 import ru.otus.l081.department.DepartmentStates;
 import ru.otus.l081.userinterface.UserInterface;
 
 import java.util.List;
 
 public class AtmBalanceAction implements AbstractAction {
-	private final List<AtmInterface> atms;
+	private final List<Atm> atms;
 	private final UserInterface ui;
 
-	public AtmBalanceAction(List<AtmInterface> atms, UserInterface departmentInterface) {
+	public AtmBalanceAction(List<Atm> atms, UserInterface departmentInterface) {
 		this.atms = atms;
 		ui = departmentInterface;
 	}

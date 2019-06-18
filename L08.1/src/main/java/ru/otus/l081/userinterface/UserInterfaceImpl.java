@@ -6,10 +6,10 @@ import java.io.InputStreamReader;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class AtmUserInterface implements UserInterface {
+public class UserInterfaceImpl implements UserInterface {
 	private BufferedReader br;
 
-	public AtmUserInterface() {
+	public UserInterfaceImpl() {
 		this.br = new BufferedReader(new InputStreamReader(System.in));
 	}
 

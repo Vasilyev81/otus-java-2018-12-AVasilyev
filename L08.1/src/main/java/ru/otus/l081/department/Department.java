@@ -4,18 +4,16 @@ import ru.otus.l081.atm.*;
 import ru.otus.l081.department.caretaker.Caretaker;
 import ru.otus.l081.userinterface.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Department {
 	private UserInterface ui;
-	private final List<AtmInterface> atms;
+	private final List<Atm> atms;
 	private final Caretaker caretaker;
 	private DepartmentStates state;
 
 	public Department(int atmsNumber) {
-		ui = new AtmUserInterface();
+		ui = new UserInterfaceImpl();
 		this.atms = new ArrayList<>(atmsNumber);
 		caretaker = new Caretaker();
 		initAtms(atmsNumber);
@@ -23,7 +21,7 @@ public class Department {
 
 	private void initAtms(int atmsNumber) {
 		for (int i = 0; i < atmsNumber; i++) {
-			AtmInterface atm = new Atm();
+			Atm atm = new AtmImpl();
 			atms.add(atm);
 			atms.get(i).init();
 			caretaker.saveBackup(atm);

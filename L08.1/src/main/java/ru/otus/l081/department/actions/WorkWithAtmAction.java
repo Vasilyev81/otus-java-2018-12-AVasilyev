@@ -1,6 +1,6 @@
 package ru.otus.l081.department.actions;
 
-import ru.otus.l081.atm.AtmInterface;
+import ru.otus.l081.atm.Atm;
 import ru.otus.l081.department.DepartmentStates;
 import ru.otus.l081.userinterface.UserInterface;
 
@@ -8,9 +8,9 @@ import java.util.List;
 
 public class WorkWithAtmAction implements AbstractAction {
 	private final UserInterface ui;
-	private final List<AtmInterface> atms;
+	private final List<Atm> atms;
 
-	public WorkWithAtmAction(List<AtmInterface> atms, UserInterface departmentInterface) {
+	public WorkWithAtmAction(List<Atm> atms, UserInterface departmentInterface) {
 		ui = departmentInterface;
 		this.atms = atms;
 	}
@@ -23,7 +23,7 @@ public class WorkWithAtmAction implements AbstractAction {
 			ui.print("\nChoose ATM (1-" + atms + "):\n");
 			choise = chooseAtm();
 		}
-		AtmInterface atm = this.atms.get(choise - 1);
+		Atm atm = this.atms.get(choise - 1);
 		atm.hookUI(ui);
 		atm.start();
 		atm.unhookUI();
