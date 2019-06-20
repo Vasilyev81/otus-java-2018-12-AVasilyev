@@ -11,7 +11,6 @@ public class InitAction implements AbstractAction {
 	public InitAction(UserInterface uInterface, CashBox cashDrawer) {
 		this.uInterface = uInterface;
 		this.cashDrawer = cashDrawer;
-
 	}
 
 	@Override

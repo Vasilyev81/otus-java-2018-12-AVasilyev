@@ -21,7 +21,7 @@ public class WithdrawAction implements AbstractAction {
 		return AtmStates.CURRENCY_BALANCE;
 	}
 
-	private Integer handleWithdrawInput() {
+	private int handleWithdrawInput() {
 		int result = 0;
 		int minAvailableBanknote = transaction.getMinAvailableNominal();
 		int availableSum = transaction.getTotalBalanceForCurrentCurrency();
