@@ -10,7 +10,7 @@ import java.io.*;
 import java.util.Arrays;
 import java.util.Map;
 
-public class AtmImpl implements Atm, Runnable {
+public class AtmImpl implements Atm {
 	private final String ID;
 	private AtmStates state;
 	private UserInterface ui;
@@ -29,11 +29,6 @@ public class AtmImpl implements Atm, Runnable {
 	@Override
 	public String getBalanceAsString() {
 		return cashBox.getBalanceAsString();
-	}
-
-	@Override
-	public void run() {
-		initAndStart();
 	}
 
 	void initAndStart() {
