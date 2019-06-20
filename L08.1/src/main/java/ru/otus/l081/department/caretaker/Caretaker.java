@@ -4,6 +4,7 @@ import ru.otus.l081.atm.Atm;
 import ru.otus.l081.atm.transactions.Memento;
 
 import java.util.*;
+import java.util.stream.IntStream;
 
 public class Caretaker {
 	private final List<Atm> atms = new ArrayList<>();
@@ -21,12 +22,13 @@ public class Caretaker {
 
 	}
 
-	public boolean restoreFromBackup(int i) {
-		String ID = atms.get(i).getID();
-		return mementos.get(ID).restore();
+	public boolean restoreFromBackup(int index) {
+		Atm atm = atms.get(index);
+		Memento memento = mementos.get(atm.getID());
+		return atm.restoreFromMemento(memento);
 	}
 
 	public boolean restoreAll() {
-		 return atms.stream().map(Atm::getID).map(mementos::get).map(Memento::restore).noneMatch(b -> (!b));
+		return IntStream.range(0, atms.size()).mapToObj(this::restoreFromBackup).noneMatch(b -> (!b));
 	}
 }

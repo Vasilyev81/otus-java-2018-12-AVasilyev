@@ -18,4 +18,6 @@ public interface Atm {
 	UserInterface unhookUI();
 
 	Memento getMemento();
+
+	boolean restoreFromMemento(Memento memento);
 }

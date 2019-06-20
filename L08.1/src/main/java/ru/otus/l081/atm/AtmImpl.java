@@ -18,7 +18,6 @@ public class AtmImpl implements Atm {
 	private final Transaction transaction;
 
 	public AtmImpl() {
-		AtmUtil.init();
 		ID = RandomStringUtils.randomAlphanumeric(10);
 		this.ui = new UserInterfaceImpl();
 		this.cashBox = new CashBox();
@@ -47,6 +46,24 @@ public class AtmImpl implements Atm {
 		state = AtmStates.CURRENCY_CHOICE;
 		work();
 	}
+	@Override
+	public boolean restoreFromMemento(Memento memento) {
+		MementoImpl memImpl = (MementoImpl) memento;
+		byte[] snapshot = memImpl.snapshot;
+		boolean result = false;
+		CashBox cd = null;
+		try {
+			ObjectInputStream objectIS = new ObjectInputStream(new ByteArrayInputStream(snapshot));
+			cd = (CashBox) objectIS.readObject();
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		if (cd != null) {
+			cashBox = cd;
+			result = true;
+		}
+		return result;
+	}
 
 	@Override
 	public String getID() {
@@ -67,48 +84,30 @@ public class AtmImpl implements Atm {
 	}
 
 	private class MementoImpl implements Memento {
-		private AtmImpl atm;
 		private byte[] snapshot;
 
-		MementoImpl(AtmImpl atm) {
-			this.atm = atm;
-			snapshot = createSnapshot();
+		MementoImpl(CashBox cashBox) {
+			snapshot = createSnapshot(cashBox);
 		}
 
 		@Override
-		public boolean restore() {
-			return atm.restoreFromSnapshot(snapshot);
+		public boolean get() {
+			return false;
 		}
 	}
 
-	private byte[] createSnapshot() {
+	private byte[] createSnapshot(CashBox cashBox) {
 		ByteArrayOutputStream byteOS = new ByteArrayOutputStream();
 		ObjectOutputStream objectOS;
 		try {
 			objectOS = new ObjectOutputStream(byteOS);
-			objectOS.writeObject(this.cashBox);
+			objectOS.writeObject(cashBox);
 			objectOS.flush();
 			objectOS.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return byteOS.toByteArray();
-	}
-
-	private boolean restoreFromSnapshot(byte[] snapshot) {
-		boolean result = false;
-		CashBox cd = null;
-				try {
-			ObjectInputStream objectIS = new ObjectInputStream(new ByteArrayInputStream(snapshot));
-			cd = (CashBox) objectIS.readObject();
-		} catch (IOException | ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		if (cd != null) {
-			cashBox = cd;
-			result = true;
-		}
-		return result;
 	}
 
 	@Override
@@ -125,7 +124,7 @@ public class AtmImpl implements Atm {
 
 	@Override
 	public Memento getMemento() {
-		return new MementoImpl(this);
+		return new MementoImpl(cashBox);
 	}
 }
 

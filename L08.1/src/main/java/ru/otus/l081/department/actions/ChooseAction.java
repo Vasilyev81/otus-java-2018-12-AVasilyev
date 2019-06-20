@@ -13,7 +13,7 @@ public class ChooseAction implements AbstractAction {
 	@Override
 	public DepartmentStates execute() {
 		StringBuilder sb = new StringBuilder()
-				.append("Choose what you want to do:\n")
+				.append("\nChoose what you want to do:\n")
 				.append("Work with ATM  -> 1\n")
 				.append("Get balance of one of ATM's -> 2\n")
 				.append("Get balances of ALL ATM's -> 3\n")

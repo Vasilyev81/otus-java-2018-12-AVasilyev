@@ -23,7 +23,7 @@ public class ResetAtmBalanceAction implements AbstractAction {
 		int atms = this.atms.size();
 		int choise = 0;
 		while (choise < 1 || choise > atms) {
-			ui.print("\nChoose AtmMain (1-" + atms + "):\n");
+			ui.print("\nChoose Atm (1-" + atms + "):\n");
 			choise = chooseAtm();
 		}
 		boolean restore = caretaker.restoreFromBackup(choise - 1);

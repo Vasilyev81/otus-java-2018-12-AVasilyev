@@ -1,6 +1,6 @@
 package ru.otus.l081.atm;
 
-		import java.util.*;
+import java.util.*;
 
 public class AtmUtil {
 	private static Map<Integer, AtmStates> statesMap;
@@ -15,6 +15,7 @@ public class AtmUtil {
 	}
 
 	public static Map<Integer, AtmStates> getStatesMap() {
+		if(statesMap == null) init();
 		return statesMap;
 	}
 }
