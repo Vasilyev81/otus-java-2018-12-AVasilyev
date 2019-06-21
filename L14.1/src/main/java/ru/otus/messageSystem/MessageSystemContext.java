@@ -1,5 +1,8 @@
 package ru.otus.messageSystem;
 
+import ru.otus.dao.DBService;
+import ru.otus.servlets.FrontendService;
+
 public class MessageSystemContext {
     private final MessageSystem messageSystem;
 
@@ -10,23 +13,29 @@ public class MessageSystemContext {
         this.messageSystem = messageSystem;
     }
 
-    public MessageSystem getMessageSystem() {
+	public void init() {
+		messageSystem.start();
+	}
+
+	public MessageSystem getMessageSystem() {
         return messageSystem;
     }
 
-    public Address getFrontAddress() {
-        return frontAddress;
-    }
+	public void setFrontAddress(FrontendService service) {
+		this.frontAddress  = service.getAddress();
+		messageSystem.addAddressee(service);
+	}
 
-    public void setFrontAddress(Address frontAddress) {
-        this.frontAddress = frontAddress;
-    }
+	public void setDbAddress(DBService service) {
+		this.dbAddress = service.getAddress();
+		messageSystem.addAddressee(service);
+	}
+
+	public Address getFrontAddress() {
+		return frontAddress;
+	}
 
     public Address getDbAddress() {
         return dbAddress;
-    }
-
-    public void setDbAddress(Address dbAddress) {
-        this.dbAddress = dbAddress;
     }
 }

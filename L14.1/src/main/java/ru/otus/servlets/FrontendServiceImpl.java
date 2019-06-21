@@ -21,7 +21,7 @@ public class FrontendServiceImpl implements FrontendService {
 	}
 
 	public void init() {
-		context.getMessageSystem().addAddressee(this);
+		context.setFrontAddress(this);
 	}
 
 	@Override

@@ -10,19 +10,20 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
         MessageSystem messageSystem = new MessageSystem();
+
         MessageSystemContext context = new MessageSystemContext(messageSystem);
 
         Address dbAddress = new Address("DB");
-        context.setDbAddress(dbAddress);
         DBPreparation DBPreparation = new DBPreparation(context, dbAddress);
         DBService dbService = DBPreparation.getDbService();
         dbService.init();
 
         Address frontAddress = new Address("Frontend");
-        context.setFrontAddress(frontAddress);
         FrontendService frontendService = new FrontendServiceImpl(context, frontAddress);
         frontendService.init();
-        messageSystem.start();
+
+        context.init();
+
         new ServerConfiguration(frontendService).start();
 
 

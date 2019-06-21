@@ -25,7 +25,7 @@ public class DBServiceImpl implements DBService {
 
 	@Override
 	public void init() {
-		context.getMessageSystem().addAddressee(this);
+		context.setDbAddress(this);
 	}
 
 	@Override
