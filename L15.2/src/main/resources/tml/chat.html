@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Jetty WebSocket Chat</title>
+    <meta charset=UTF-8>
+    <!--<script src="/webjars/jquery/3.3.1/jquery.min.js"></script>-->
+    <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>-->
+    <script>
+        var ws = new WebSocket("ws://localhost:8080/root/chat_socket");
+        ws.onopen = function () {
+        };
+        ws.onmessage = function (message) {
+            document.getElementById("chatlog").textContent += message.data + "\n";
+        };
+
+        function postToServer() {
+            ws.send(document.getElementById("msg").value);
+            document.getElementById("msg").value = "";
+        }
+
+        function closeConnect() {
+            ws.close();
+        }
+    </script>
+</head>
+    <body>
+    <textarea id="chatlog" readonly></textarea>
+    <br/>
+    <input id="msg" type="text"/>
+    <button type="submit" id="sendButton" onClick="postToServer()">Send!</button>
+    <button type="submit" id="closeButton" onClick="closeConnect()">End</button>
+    <div>
+        <h4><a href="/root/admin_page">Admin Page</a></h4>
+        <h4><a href="/root/index.html">Main Page</a></h4>
+    </div>
+
+
+    </body>
+
+</html>

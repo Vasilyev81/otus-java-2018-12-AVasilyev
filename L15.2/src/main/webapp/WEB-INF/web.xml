@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+        http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+
+    <display-name>L15.1</display-name>
+    <description>war with spring</description>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:applicationContext.xml</param-value>
+    </context-param>
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <filter>
+        <filter-name>securityFilter</filter-name>
+        <filter-class>ru.otus.servlets.SecurityFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>securityFilter</filter-name>
+        <url-pattern>/admin_page/*</url-pattern>
+    </filter-mapping>
+
+    <servlet>
+        <servlet-name>timeServlet</servlet-name>
+        <servlet-class>ru.otus.servlets.TimeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>timeServlet</servlet-name>
+        <url-pattern>/time</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>chatServlet</servlet-name>
+        <servlet-class>ru.otus.servlets.ChatServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>chatServlet</servlet-name>
+        <url-pattern>/chat</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>chatSocketServlet</servlet-name>
+        <servlet-class>ru.otus.servlets.ChatSocketServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>chatSocketServlet</servlet-name>
+        <url-pattern>/chat_socket</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>logonServlet</servlet-name>
+        <servlet-class>ru.otus.servlets.LogonServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>logonServlet</servlet-name>
+        <url-pattern>/logon</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>logonErrorServlet</servlet-name>
+        <servlet-class>ru.otus.servlets.LogonErrorServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>logonErrorServlet</servlet-name>
+        <url-pattern>/logon_error</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>accessDeniedServlet</servlet-name>
+        <servlet-class>ru.otus.servlets.AccessDeniedServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>accessDeniedServlet</servlet-name>
+        <url-pattern>/access_denied</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>logoutServlet</servlet-name>
+        <servlet-class>ru.otus.servlets.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>logoutServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>adminServlet</servlet-name>
+        <servlet-class>ru.otus.servlets.AdminPageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>adminServlet</servlet-name>
+        <url-pattern>/admin_page</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>saveUserServlet</servlet-name>
+        <servlet-class>ru.otus.servlets.SaveUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>saveUserServlet</servlet-name>
+        <url-pattern>/admin_page/save_user</url-pattern>
+    </servlet-mapping>
+
+//Find User
+    <servlet>
+        <servlet-name>findUserServlet</servlet-name>
+        <servlet-class>ru.otus.servlets.FindUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>findUserServlet</servlet-name>
+        <url-pattern>/admin_page/find_user</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>findUserSocketServlet</servlet-name>
+        <servlet-class>ru.otus.servlets.FindUserSocketServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>findUserSocketServlet</servlet-name>
+        <url-pattern>/admin_page/founded_user_socket</url-pattern>
+    </servlet-mapping>
+
+//List Of Users
+    <servlet>
+        <servlet-name>listOfUsersServlet</servlet-name>
+        <servlet-class>ru.otus.servlets.ListOfUsersServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>listOfUsersServlet</servlet-name>
+        <url-pattern>/admin_page/users_list</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>listOfUsersSocketServlet</servlet-name>
+        <servlet-class>ru.otus.servlets.ListOfUsersSocketServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>listOfUsersSocketServlet</servlet-name>
+        <url-pattern>/admin_page/users_list_socket</url-pattern>
+    </servlet-mapping>
+
+
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+
+</web-app>

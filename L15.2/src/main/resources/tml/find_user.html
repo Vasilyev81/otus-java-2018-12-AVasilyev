@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Find User</title>
+</head>
+<body>
+<div>
+    <h2>Find User by ID</h2>
+    <form>
+        <table id="table" border="0" cellspacing="2" cellpadding="1">
+            <tbody>
+            <tr>
+                <td>User id:</td>
+                <td><input name="id" size="12" type="text" id="userId" value="" maxlength="8"/></td>
+            </tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <td><input type="button" onclick="onPush()" value="Search"/></td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+<script>
+    var ws = new WebSocket("ws://localhost:8080/root/admin_page/founded_user_socket");
+
+    function onPush() {
+        var request = JSON.stringify({userId:document.getElementById("userId").value, sessionId:getCookie("sessionId")});
+        /*var request = "{\"userId\":\"" + document.getElementById("userId").value + "\", \"sessionId\":\"" + getCookie("sessionId") + "\"}";*/
+        ws.send(request);
+    }
+
+    ws.onmessage = function (message) {
+        var user = JSON.parse(message.data);
+        parseAndWriteOnPage(user);
+    };
+
+    function parseAndWriteOnPage(user) {
+        if (user.result == null || user.id != null) {
+            var userInHtml = "<tbody><tr><td>id: " + user.id + "</td><td>name: " + user.name + "</td><td>role: " + (user.account).role + "</td></tr></tbody>";
+            document.getElementById("table").innerHTML += userInHtml;
+        } else document.getElementById("table").innerHTML += ("<tbody><tr><td>No users found</td></tr></tbody>");
+    }
+
+    function getCookie(name) {
+        var r = document.cookie.match("(^|;) ?" + name + "=([^;]*)(;|$)");
+        if (r) return r[2];
+        else return "";
+    }
+</script>
+<div>
+    <h4><a href="/root/admin_page">Admin page</a></h4>
+    <h4><a href="/root/index.html">Main page</a></h4>
+</div>
+</body>
+</html>

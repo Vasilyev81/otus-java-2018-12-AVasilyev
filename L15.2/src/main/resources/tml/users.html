@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<body>
+<h2>Users in database</h2>
+<table id="table" border="0" cellpadding="2" cellspacing="2">
+    <tbody>
+    <tr>
+        <td>ID</td>
+        <td>Name</td>
+    </tr>
+    </tbody>
+</table>
+<h4 id="h"></h4>
+<h4><a href="/root/admin_page">Admin page</a></h4>
+<script>
+    var ws = new WebSocket("ws://localhost:8080/root/admin_page/users_list_socket");
+    ws.onopen = function () {
+        sendSessionID();
+    };
+
+    ws.onmessage = function (message) {
+        printOnPage(message);
+        closeConnection();
+    };
+
+    function printOnPage(message) {
+        var users = JSON.parse( message.data);
+        users.forEach(function (user) {
+            var newRow = "<tbody><tr><td>" + user.id + "</td><td>" + user.name + "</td></tr></tbody>";
+            document.getElementById("table").innerHTML += newRow;
+        });
+    }
+
+    function closeConnection() {
+        ws.close();
+    }
+
+    function sendSessionID() {
+        var id = getCookie('requestId');
+        ws.send(id)
+    }
+
+    function getCookie(name) {
+        var r = document.cookie.match("(^|;) ?" + name + "=([^;]*)(;|$)");
+        if (r) return r[2];
+        else return "";
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+    <context:annotation-config/>
+
+    <bean name="messageSystem" class="ru.otus.messageSystem.MessageSystem" init-method="start">
+        <constructor-arg name="context" ref="msgContext"/>
+    </bean>
+
+    <bean id="securityDao" class="ru.otus.security.SecurityDAO" init-method="init">
+        <constructor-arg name="frontendService" ref="frontendService"/>
+    </bean>
+
+    <bean id="msgContext" class="ru.otus.messageSystem.MessageSystemContext">
+        <constructor-arg name="frontend" ref="frontendService"/>
+        <constructor-arg name="backend" ref="backendService"/>
+    </bean>
+
+    <bean id="frontendService" class="ru.otus.frontend.FrontendServiceImpl">
+        <constructor-arg name="address" ref="frontAddress"/>
+    </bean>
+    <bean id="frontAddress" class="ru.otus.messageSystem.Address" scope="prototype">
+        <constructor-arg name="id" value="Frontend"/>
+    </bean>
+
+    <bean id="backendService" class="ru.otus.backend.BackendServiceImpl">
+        <constructor-arg name="address" ref="backendAddress"/>
+    </bean>
+
+    <bean id="backendAddress" class="ru.otus.messageSystem.Address" scope="prototype">
+        <constructor-arg name="id" value="Backend"/>
+    </bean>
+    <bean id="dbService" class="ru.otus.backend.dbServise.DBServiceImpl">
+        <constructor-arg name="configuration" ref="h2Config"/>
+    </bean>
+    <bean id="h2Config" class="ru.otus.backend.dbServise.H2Configuration"/>
+    <bean id="dbPreparation" class="ru.otus.backend.dbServise.DBPreparation"/>
+    <bean id="chatService" class="ru.otus.backend.chatService.ChatServiceImpl"/>
+
+    <bean id="templateProcessor" class="ru.otus.servlets.TemplateProcessor">
+        <constructor-arg value="/tml/"/>
+    </bean>
+
+    <!--<bean id="timerServlet" class="ru.otus.servlets.TimeServlet"/>
+    <bean id="adminPageServlet" class="ru.otus.servlets.AdminPageServlet"/>
+    <bean id="logonErrorServlet" class="ru.otus.servlets.LogonErrorServlet"/>
+    <bean id="logonServlet" class="ru.otus.servlets.LogonServlet"/>
+    <bean id="logoutServlet" class="ru.otus.servlets.LogoutServlet"/>
+    <bean id="accessDenied" class="ru.otus.servlets.AccessDeniedServlet"/>
+    <bean id="saveUserServlet" class="ru.otus.servlets.SaveUserServlet"/>
+    <bean id="findUserServlet" class="ru.otus.servlets.FindUserServlet"/>
+    <bean id="listOfUsersServlet" class="ru.otus.servlets.ListOfUsersServlet"/>
+    <bean id="securityFilter" class="ru.otus.servlets.SecurityFilter"/>
+    <bean id="securityConfig" class="ru.otus.security.SecurityConfig"/>-->
+
+</beans>
