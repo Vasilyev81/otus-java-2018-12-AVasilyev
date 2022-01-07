@@ -26,7 +26,7 @@
         <spring.web.version>4.3.24.RELEASE</spring.web.version>
         <freemarker.version>2.3.28</freemarker.version>
         <hibernate.version>5.4.2.Final</hibernate.version>
-        <h2.version>1.4.199</h2.version>
+        <h2.version>2.0.206</h2.version>
     </properties>
 
 
